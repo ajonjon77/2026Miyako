@@ -39,7 +39,6 @@
             box-shadow: 0 0 30px rgba(2, 132, 199, 0.08);
         }
 
-        /* 雜誌風 Header (宮古藍調) */
         header {
             background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
             padding: 32px 24px 20px 24px;
@@ -74,7 +73,6 @@
             text-transform: uppercase;
         }
 
-        /* 天數導覽條 Top Navigation */
         .day-nav {
             display: none;
             overflow-x: auto;
@@ -119,11 +117,8 @@
             border-color: var(--accent-ocean);
         }
 
-        /* 內容容器 */
         .container { padding: 20px; }
-
         .tab-content { display: none; }
-
         .tab-content.active {
             display: block;
             animation: fadeIn 0.4s ease-in-out;
@@ -134,7 +129,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 封面與卡片風格 */
         .home-cover {
             width: 100%;
             height: 220px;
@@ -224,7 +218,6 @@
 
         .quick-link-btn:hover { background: var(--tag-bg); border-color: var(--accent-sky); }
 
-        /* Notice Card */
         .notice-card {
             background: #F0F9FF;
             border: 1px solid #BAE6FD;
@@ -245,7 +238,6 @@
             line-height: 1.7;
         }
 
-        /* 景點卡片設計 */
         .spot-card {
             background: var(--card-bg);
             border-radius: 8px;
@@ -331,7 +323,6 @@
             letter-spacing: 1px;
         }
 
-        /* Checklist */
         .check-group { margin-bottom: 20px; }
         .check-group h4 {
             font-size: 14px;
@@ -363,7 +354,6 @@
             flex: 1;
         }
 
-        /* 表單與分帳工具 */
         .calc-card {
             background: white;
             border-radius: 8px;
@@ -483,18 +473,6 @@
             font-size: 13px;
         }
 
-        .btn-action {
-            border: none;
-            background: none;
-            font-size: 11px;
-            cursor: pointer;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 4px;
-        }
-        .btn-edit { color: var(--accent-ocean); background: #E0F2FE; }
-        .btn-delete { color: #DC2626; background: #FEE2E2; }
-
         .settlement-card {
             background: #F0F9FF;
             border: 1px solid #BAE6FD;
@@ -503,7 +481,6 @@
             margin-top: 16px;
         }
 
-        /* 底部導覽列 Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -536,6 +513,16 @@
 
         .bottom-nav-btn.active { color: var(--accent-ocean); font-weight: 700; }
         .bottom-nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .sync-badge {
+            font-size: 10px;
+            background: #DEF7EC;
+            color: #03543F;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 6px;
+        }
     </style>
 </head>
 <body>
@@ -548,7 +535,6 @@
         </div>
     </header>
 
-    <!-- Top Day Navigation -->
     <div class="day-nav" id="topNav">
         <button class="day-btn" id="btn-day1" onclick="switchTab('day1')">Day 1<span class="date">10/21 (三)</span></button>
         <button class="day-btn" id="btn-day2" onclick="switchTab('day2')">Day 2<span class="date">10/22 (四)</span></button>
@@ -562,7 +548,6 @@
 
         <!-- ===== Home (首頁導覽) ===== -->
         <div id="home" class="tab-content active">
-            <!-- 更改為宮古島度假海灘風圖片 -->
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="宮古島渡假海灘" class="home-cover">
             
             <div class="info-box">
@@ -581,7 +566,6 @@
                     <span class="label">交通方式</span>
                     <span class="detail">租車自駕 (全程自駕移動)</span>
                 </div>
-                <!-- 修正住宿分布資訊 -->
                 <div class="info-row">
                     <span class="label">Day 1 - Day 4 住宿</span>
                     <span class="detail">宮古島市區精選飯店</span>
@@ -929,10 +913,13 @@
             </div>
         </div>
 
-        <!-- ===== Split Expense Tool ===== -->
+        <!-- ===== Shared Split Expense Tool (雲端多人分帳) ===== -->
         <div id="calc" class="tab-content">
             <div class="calc-card">
-                <div class="spot-title" style="margin-bottom: 10px;">👥 同行成員</div>
+                <div class="spot-title" style="margin-bottom: 10px;">
+                    👥 同行成員 
+                    <span class="sync-badge">☁️ 雲端多人同步</span>
+                </div>
                 <div class="member-tags" id="memberTagsList"></div>
                 <div style="display: flex; gap: 8px; margin-top: 8px;">
                     <input type="text" id="newMemberName" class="form-control" placeholder="成員姓名" style="padding: 6px 10px;">
@@ -941,14 +928,12 @@
             </div>
 
             <div class="calc-card">
-                <div class="spot-title" style="margin-bottom: 12px;">💰 新增/編輯消費記帳</div>
+                <div class="spot-title" style="margin-bottom: 12px;">💰 新增消費記帳</div>
 
                 <div class="rate-box">
                     <span>💱 匯率 (JPY ➔ TWD)</span>
                     <div>1 日幣 = <input type="number" id="exchangeRate" class="rate-input" value="0.215" step="0.001" onchange="updateExpenseUI()"> 台幣</div>
                 </div>
-
-                <input type="hidden" id="editIndex" value="-1">
 
                 <div class="form-group">
                     <label>消費日期</label>
@@ -974,15 +959,15 @@
                     <div id="membersCheckboxGrid" class="checkbox-group-grid"></div>
                 </div>
 
-                <button class="btn-primary" id="btnAddExp" onclick="saveExpense()">➕ 新增消費紀錄</button>
+                <button class="btn-primary" id="btnAddExp" onclick="saveExpense()">➕ 儲存並同步至雲端</button>
             </div>
 
             <div class="calc-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-                    <div class="spot-title" style="margin-bottom: 0;">📋 消費明細</div>
-                    <button onclick="clearAllData()" style="padding: 4px 8px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">清空帳目</button>
+                    <div class="spot-title" style="margin-bottom: 0;">📋 全員共享消費明細</div>
+                    <button onclick="clearAllData()" style="padding: 4px 8px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">清空所有帳目</button>
                 </div>
-                <div id="expenseList">(目前尚無紀錄)</div>
+                <div id="expenseList">載入中...</div>
 
                 <div class="settlement-card" id="settlementResult">
                     <div style="font-weight:700; margin-bottom: 6px; color:var(--accent-ocean); font-size:13px;">💡 結算建議：</div>
@@ -1023,7 +1008,7 @@
 
     </div>
 
-    <!-- Bottom Nav 調整順序: 首頁-行程-美食-購物-分帳-checklist -->
+    <!-- Bottom Nav -->
     <div class="bottom-nav">
         <button class="bottom-nav-btn active" id="bnav-home" onclick="switchTab('home')">
             <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -1052,6 +1037,9 @@
     </div>
 
     <script>
+        // 將此處網址換成你在 Apps Script 獲得的 Web App URL
+        const API_URL = "https://script.google.com/macros/s/AKfycby4WhR_LgEhlAyJ-FbdL-ZN3svwqdJwiDaMwkyBxam36rt7Xvz4bzDsaD-klxBfERzzhg/exec";
+
         document.getElementById('expDate').value = '2026-10-21';
 
         function switchTab(tabId) {
@@ -1084,14 +1072,28 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 分帳小工具 JS ---
-        let defaultMembers = ['Andy', 'Pink'];
-        let members = JSON.parse(localStorage.getItem('miyako_members')) || defaultMembers;
-        let expenses = JSON.parse(localStorage.getItem('miyako_expenses')) || [];
+        // --- 多人共享分帳邏輯 ---
+        let members = ['Andy', 'Pink'];
+        let expenses = [];
 
-        function saveToLocalStorage() {
-            localStorage.setItem('miyako_members', JSON.stringify(members));
-            localStorage.setItem('miyako_expenses', JSON.stringify(expenses));
+        async function fetchExpensesFromCloud() {
+            if (API_URL.includes("YOUR_SCRIPT_ID")) {
+                document.getElementById('expenseList').innerHTML = '<div style="color:red; font-size:12px;">請先在 JS 中設定步驟一取得的 API_URL 網址！</div>';
+                return;
+            }
+            try {
+                let res = await fetch(API_URL);
+                let data = await res.json();
+                expenses = data.map(item => ({
+                    ...item,
+                    amount: Number(item.amount),
+                    members: typeof item.members === 'string' ? item.members.split(',') : item.members
+                }));
+                updateExpenseUI();
+            } catch (e) {
+                console.error("讀取失敗:", e);
+                document.getElementById('expenseList').innerHTML = '讀取雲端資料失敗。';
+            }
         }
 
         function renderMembersUI() {
@@ -1129,7 +1131,6 @@
             if (name && !members.includes(name)) {
                 members.push(name);
                 input.value = '';
-                saveToLocalStorage();
                 renderMembersUI();
             }
         }
@@ -1140,15 +1141,13 @@
                 return;
             }
             members.splice(idx, 1);
-            saveToLocalStorage();
             renderMembersUI();
         }
 
-        function saveExpense() {
+        async function saveExpense() {
             const date = document.getElementById('expDate').value;
             const name = document.getElementById('expName').value.trim();
             const amount = parseFloat(document.getElementById('expAmount').value);
-            const editIndex = parseInt(document.getElementById('editIndex').value);
 
             const payerEl = document.querySelector('input[name="payerRadio"]:checked');
             const payer = payerEl ? payerEl.value : '';
@@ -1163,50 +1162,51 @@
                 return;
             }
 
-            if (editIndex === -1) {
-                expenses.push({ date, name, amount, payer, members: selectedMembers });
-            } else {
-                expenses[editIndex] = { date, name, amount, payer, members: selectedMembers };
-                document.getElementById('editIndex').value = "-1";
-                document.getElementById('btnAddExp').innerText = "➕ 新增消費紀錄";
-            }
+            const btn = document.getElementById('btnAddExp');
+            btn.disabled = true;
+            btn.innerText = "⏳ 上傳雲端中...";
 
-            saveToLocalStorage();
-            clearForm();
-            updateExpenseUI();
-        }
+            const newRecord = {
+                action: "add",
+                date,
+                name,
+                amount,
+                payer,
+                members: selectedMembers.join(',')
+            };
 
-        function editExpense(index) {
-            const item = expenses[index];
-            document.getElementById('expDate').value = item.date || '2026-10-21';
-            document.getElementById('expName').value = item.name;
-            document.getElementById('expAmount').value = item.amount;
-            document.getElementById('editIndex').value = index;
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newRecord)
+                });
 
-            const radio = document.querySelector(`input[name="payerRadio"][value="${item.payer}"]`);
-            if (radio) radio.checked = true;
-
-            document.querySelectorAll('input[name="splitCheck"]').forEach(cb => {
-                cb.checked = item.members.includes(cb.value);
-            });
-
-            document.getElementById('btnAddExp').innerText = "✏️ 儲存修改";
-            window.scrollTo({ top: document.getElementById('calc').offsetTop, behavior: 'smooth' });
-        }
-
-        function deleteExpense(index) {
-            if (confirm('確定要刪除這筆消費紀錄嗎？')) {
-                expenses.splice(index, 1);
-                saveToLocalStorage();
-                updateExpenseUI();
+                alert('新增成功！正在更新資料...');
+                clearForm();
+                setTimeout(fetchExpensesFromCloud, 1000);
+            } catch (e) {
+                alert('上傳失敗，請檢查網路！');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "➕ 儲存並同步至雲端";
             }
         }
 
-        function clearAllData() {
-            if (confirm('確定要清空所有消費紀錄嗎？')) {
-                expenses = [];
-                saveToLocalStorage();
-                updateExpenseUI();
+        async function clearAllData() {
+            if (confirm('確定要清空雲端的所有消費紀錄嗎？')) {
+                try {
+                    await fetch(API_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: "clear" })
+                    });
+                    setTimeout(fetchExpensesFromCloud, 1000);
+                } catch (e) {
+                    alert('清空失敗');
+                }
             }
         }
 
@@ -1228,10 +1228,9 @@
             }
 
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-
             let balances = {};
 
-            expenses.forEach((item, index) => {
+            expenses.forEach((item) => {
                 const twd = Math.round(item.amount * rate);
                 const div = document.createElement('div');
                 div.className = 'expense-list-item';
@@ -1240,22 +1239,19 @@
                         <span style="font-size:11px; font-weight:700; color:var(--accent-ocean); display:block;">📅 ${item.date || '未指定日期'}</span>
                         <b style="font-size:14px; color:var(--text-primary);">${item.name}</b> 
                         <span style="font-size:12px; color:var(--text-secondary);">(${item.payer} 先付)</span><br>
-                        <span style="color:var(--text-secondary); font-size:11px;">分攤: ${item.members.join(', ')}</span>
+                        <span style="color:var(--text-secondary); font-size:11px;">分攤: ${Array.isArray(item.members) ? item.members.join(', ') : item.members}</span>
                     </div>
                     <div style="text-align:right;">
                         <div style="font-weight:700; color:var(--text-primary);">¥${item.amount.toLocaleString()}</div>
                         <div style="font-size:11px; color:var(--text-secondary);">≈ NT$${twd.toLocaleString()}</div>
-                        <div style="margin-top:4px;">
-                            <button class="btn-action btn-edit" onclick="editExpense(${index})">編輯</button>
-                            <button class="btn-action btn-delete" onclick="deleteExpense(${index})">刪除</button>
-                        </div>
                     </div>
                 `;
                 listContainer.appendChild(div);
 
-                const perPerson = item.amount / item.members.length;
+                const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
+                const perPerson = item.amount / memList.length;
                 balances[item.payer] = (balances[item.payer] || 0) + item.amount;
-                item.members.forEach(m => {
+                memList.forEach(m => {
                     balances[m] = (balances[m] || 0) - perPerson;
                 });
             });
@@ -1273,7 +1269,6 @@
             }
 
             let settlementText = '';
-
             debtors.forEach(d => {
                 creditors.forEach(c => {
                     if (d.amount > 0 && c.amount > 0) {
@@ -1295,7 +1290,7 @@
         }
 
         renderMembersUI();
-        updateExpenseUI();
+        fetchExpensesFromCloud();
     </script>
 </body>
 </html>
