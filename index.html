@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宮古島 Miyako 六天五夜 隨行手冊</title>
+    <title>宮古島 Miyako 六天五夜</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -309,6 +309,53 @@
             border-left: 3px solid var(--accent-ocean);
         }
 
+        .section-header-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-ocean);
+            margin: 24px 0 14px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--accent-sky);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .souvenir-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .souvenir-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .souvenir-img {
+            width: 100%;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .souvenir-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
         .hotel-badge {
             background: var(--text-primary);
             color: white;
@@ -447,6 +494,60 @@
             width: 16px;
             height: 16px;
             accent-color: var(--accent-ocean);
+        }
+
+        .split-type-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .split-type-btn {
+            flex: 1;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            background: #F8FAFC;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .split-type-btn.active {
+            background: var(--tag-bg);
+            color: var(--accent-ocean);
+            border-color: var(--accent-sky);
+        }
+
+        .custom-share-list {
+            background: #F8FAFC;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .custom-share-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        .custom-share-item input[type="number"] {
+            width: 100px;
+            padding: 6px 8px;
+            font-size: 13px;
+        }
+        
+        /* 樣式控制：手動修改為黑色字體，自動計算金額為灰色字體 */
+        .custom-val-input.is-manual {
+            color: #0F172A !important;
+            font-weight: bold;
+        }
+        .custom-val-input.is-auto {
+            color: #94A3B8 !important;
+            font-weight: normal;
         }
 
         .btn-primary {
@@ -884,36 +985,194 @@
 
         <!-- ===== Shopping ===== -->
         <div id="shopping" class="tab-content">
+            <div class="section-header-title">🛍️ 必逛購物地點</div>
+
             <div class="spot-card shopping">
-                <div class="spot-header"><span class="spot-time shop-tag">🎁 特產市集</span></div>
-                <div class="spot-title">島之站宮古（島の駅みやこ）</div>
-                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="島之站宮古">
-                <div class="spot-desc">當地最具代表性的特產市集，販售新鮮蔬果、宮古島汽水及在地手工藝品。</div>
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">鹽業主題</span>
+                    <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">1. 雪塩博物館</div>
+                <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="雪塩博物館">
+                <div class="spot-desc">認識極細雪鹽製程，現場販售多元雪鹽商品、美妝品及招牌雪鹽霜淇淋。</div>
             </div>
 
             <div class="spot-card shopping">
-                <div class="spot-header"><span class="spot-time shop-tag">✈️ 離境購物</span></div>
-                <div class="spot-title">宮古機場 / 下地島機場賣店</div>
-                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="宮古機場">
-                <div class="spot-desc">離境前補齊伴手禮的最後防線，機場內有多間禮品店與雪鹽專賣店。</div>
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">折扣百貨</span>
+                    <a href="https://maps.google.com/?q=Don+Quijote+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">2. 唐吉訶德 宮古島店</div>
+                <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="唐吉訶德">
+                <div class="spot-desc">營業至深夜的大型賣場，一次採買齊全沖繩限定藥妝、零食與各類生活雜貨。</div>
             </div>
 
             <div class="spot-card shopping">
-                <div class="spot-header"><span class="spot-time shop-tag">🏮 歷史老街</span></div>
-                <div class="spot-title">西里大通 (Nishizato Street)</div>
-                <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="西里大通">
-                <div class="spot-desc">島上歷史最悠久的商店街，適合邊逛街邊挑選泡盛酒與琉球玻璃藝品。</div>
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">生鮮超市</span>
+                    <a href="https://maps.google.com/?q=MaxValu+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">3. MaxValu 永旺宮古南超市</div>
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="MaxValu超市">
+                <div class="spot-desc">24小時營業的連鎖超市，採買日本當季水果、生鮮、熟食與在地飲料的首選。</div>
             </div>
 
             <div class="spot-card shopping">
-                <div class="spot-header"><span class="spot-time shop-tag">🛒 大型商場</span></div>
-                <div class="spot-title">永旺宮古南購物中心（Aeon Town Miyakonan）</div>
-                <img src="https://images.unsplash.com/photo-1605333552084-245ed8b97587?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="Aeon Town">
-                <div class="spot-desc">大型綜合商場，內含 MaxValu 超市、Village Vanguard 雜貨與大創 DAISO。</div>
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">文青選物</span>
+                    <a href="https://maps.google.com/?q=Cross+Point+Market+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">4. Cross Point Market</div>
+                <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="Cross Point Market">
+                <div class="spot-desc">嚴選沖繩與宮古島質感雜貨、文創伴手禮、特色服飾及精緻紀念品。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">歷史商街</span>
+                    <a href="https://maps.google.com/?q=Nishizato+Street" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">5. 西里大通街</div>
+                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="西里大通街">
+                <div class="spot-desc">市區熱鬧的商店街，集結在地手工藝品店、泡盛酒專賣店與特色居酒屋。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">機場限定</span>
+                    <a href="https://maps.google.com/?q=coral+port+the+Shop+Shimojishima" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">6. 下地島機場 coral port the Shop</div>
+                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="coral port the Shop">
+                <div class="spot-desc">渡假風質感航廈商店，販售獨家聯名商品、時尚配件與搭機前的特色紀念品。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">生活雜貨</span>
+                    <a href="https://maps.google.com/?q=MUJI+Miyakojima+City" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">7. 無印良品 宮古島City店</div>
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="無印良品宮古島">
+                <div class="spot-desc">宮古島首家無印良品門市，極簡舒適空間，適合補給服飾、保養品與旅行雜物。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">百元均一</span>
+                    <a href="https://maps.google.com/?q=DAISO+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">8. 大創 DAISO 宮古南SC店</div>
+                <img src="https://images.unsplash.com/photo-1605333552084-245ed8b97587?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="DAISO">
+                <div class="spot-desc">品項齊全的百元商店，補充海邊玩水小物、收納袋與超值日本生活用品。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">農特產集散</span>
+                    <a href="https://maps.google.com/?q=Shima+no+Eki+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">9. 島之站宮古（島の駅みやこ）</div>
+                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="島之站宮古">
+                <div class="spot-desc">當地居民與遊客最愛的特產市場，產地直送新鮮芒果、火龍果與各種海島抹醬。</div>
+            </div>
+
+            <div class="spot-card shopping">
+                <div class="spot-header">
+                    <span class="spot-time shop-tag">複合商場</span>
+                    <a href="https://maps.google.com/?q=Aeon+Town+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">10. 永旺宮古南購物中心</div>
+                <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="AEON TOWN">
+                <div class="spot-desc">集結超市、藥妝、服飾與餐廳的綜合商圈，停車極為便利。</div>
+            </div>
+
+            <div class="section-header-title">🎁 必買伴手禮推薦</div>
+            <div class="souvenir-grid">
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
+                    <div class="souvenir-name">1. 雪鹽白巧克力餅</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽法蘭酥">
+                    <div class="souvenir-name">2. 雪鹽法蘭酥</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1518013031184-41d4bf37033d?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽薯條">
+                    <div class="souvenir-name">3. 雪鹽薯條</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽費南雪">
+                    <div class="souvenir-name">4. 雪鹽費南雪</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽年輪蛋糕">
+                    <div class="souvenir-name">5. 雪鹽年輪蛋糕</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="紅芋塔">
+                    <div class="souvenir-name">6. 紅芋塔 / 紅薯塔</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="Monte Doll香蕉蛋糕">
+                    <div class="souvenir-name">7. Monte Doll香蕉蛋糕</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="芒果夾心餅乾">
+                    <div class="souvenir-name">8. 芒果夾心餅乾</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="宮古島堅果">
+                    <div class="souvenir-name">9. 宮古島堅果</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽調味料">
+                    <div class="souvenir-name">10. 雪鹽調味料</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽汽水">
+                    <div class="souvenir-name">11. 宮古島雪鹽汽水</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="雪鹽肥皂">
+                    <div class="souvenir-name">12. 宮古島雪鹽肥皂</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="守護君周邊">
+                    <div class="souvenir-name">13. 守護君周邊商品</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="宮古島帆布袋">
+                    <div class="souvenir-name">14. 宮古島帆布袋</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="宮古島磁鐵">
+                    <div class="souvenir-name">15. 宮古島磁鐵</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="特色T-shirt">
+                    <div class="souvenir-name">16. 特色 T-shirt</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1567206563064-6f60f4078b57?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="Blue Seal周邊">
+                    <div class="souvenir-name">17. Blue Seal周邊</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="Orion周邊">
+                    <div class="souvenir-name">18. Orion 周邊商品</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="曬黑 Hello Kitty">
+                    <div class="souvenir-name">19. 曬黑 Hello Kitty</div>
+                </div>
+                <div class="souvenir-card">
+                    <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=300&q=80" class="souvenir-img" alt="Hydro Flask水壺">
+                    <div class="souvenir-name">20. 下地島 Hydro Flask</div>
+                </div>
             </div>
         </div>
 
-        <!-- ===== Shared Split Expense Tool (雲端多人分帳) ===== -->
+        <!-- ===== Shared Split Expense Tool (升級分帳) ===== -->
         <div id="calc" class="tab-content">
             <div class="calc-card">
                 <div class="spot-title" style="margin-bottom: 10px;">
@@ -942,21 +1201,42 @@
 
                 <div class="form-group">
                     <label>消費項目名稱</label>
-                    <input type="text" id="expName" class="form-control" placeholder="例如：古謝そば麵、租車費">
+                    <input type="text" id="expName" class="form-control" placeholder="例如：古謝そば麵、個人藥妝">
                 </div>
-                <div class="form-group">
-                    <label>金額 (日幣 JPY)</label>
-                    <input type="number" id="expAmount" class="form-control" placeholder="例如：4500">
-                </div>
-                
+
                 <div class="form-group">
                     <label>誰先付款？</label>
                     <div id="payerRadioGrid" class="checkbox-group-grid"></div>
                 </div>
 
+                <!-- 分攤模式切換 -->
                 <div class="form-group">
-                    <label>分攤成員</label>
+                    <label>分攤方式</label>
+                    <div class="split-type-selector">
+                        <button type="button" class="split-type-btn active" id="btnModeEqual" onclick="setSplitMode('equal')">⚖️ 平均分攤</button>
+                        <button type="button" class="split-type-btn" id="btnModeCustom" onclick="setSplitMode('custom')">✏️ 按個人金額</button>
+                    </div>
+                </div>
+
+                <!-- 總金額輸入框（兩種模式皆保留） -->
+                <div class="form-group" id="totalAmountGroup">
+                    <label>總金額 (日幣 JPY)</label>
+                    <input type="number" id="expAmount" class="form-control" placeholder="例如：4500" oninput="onTotalAmountInput()">
+                </div>
+
+                <!-- 均分模式：勾選成員 -->
+                <div class="form-group" id="equalSplitGroup">
+                    <label>分攤成員 (勾選)</label>
                     <div id="membersCheckboxGrid" class="checkbox-group-grid"></div>
+                </div>
+
+                <!-- 自訂金額模式：顯示各成員金額輸入 -->
+                <div class="form-group" id="customSplitGroup" style="display: none;">
+                    <label>分攤成員與獨立金額 (日幣 JPY)</label>
+                    <div id="customShareList" class="custom-share-list"></div>
+                    <div style="font-size: 12px; color: var(--accent-ocean); font-weight: bold; margin-top: 6px; text-align: right;" id="customTotalSum">
+                        合計金額：¥0
+                    </div>
                 </div>
 
                 <button class="btn-primary" id="btnAddExp" onclick="saveExpense()">➕ 儲存並同步至雲端</button>
@@ -976,7 +1256,7 @@
             </div>
         </div>
 
-        <!-- ===== Checklist (移至最右邊) ===== -->
+        <!-- ===== Checklist ===== -->
         <div id="checklist" class="tab-content">
             <div class="calc-card">
                 <div class="spot-title" style="margin-bottom: 16px;">✅ 行前與隨身 CHECKLIST</div>
@@ -1037,7 +1317,6 @@
     </div>
 
     <script>
-        // 將此處網址換成你在 Apps Script 獲得的 Web App URL
         const API_URL = "https://script.google.com/macros/s/AKfycby4WhR_LgEhlAyJ-FbdL-ZN3svwqdJwiDaMwkyBxam36rt7Xvz4bzDsaD-klxBfERzzhg/exec";
 
         document.getElementById('expDate').value = '2026-10-21';
@@ -1072,23 +1351,55 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 多人共享分帳邏輯 ---
+        // --- 多人共享分帳邏輯 (升級版) ---
         let members = ['Andy', 'Pink'];
         let expenses = [];
+        let currentSplitMode = 'equal'; // 'equal' 或 'custom'
+        
+        // 紀錄自訂金額模式下，哪些成員是使用者「手動輸入/修改」的
+        let manualCustomMembers = new Set();
+
+        function setSplitMode(mode) {
+            currentSplitMode = mode;
+            if (mode === 'equal') {
+                document.getElementById('btnModeEqual').classList.add('active');
+                document.getElementById('btnModeCustom').classList.remove('active');
+                document.getElementById('equalSplitGroup').style.display = 'block';
+                document.getElementById('customSplitGroup').style.display = 'none';
+            } else {
+                document.getElementById('btnModeCustom').classList.add('active');
+                document.getElementById('btnModeEqual').classList.remove('active');
+                document.getElementById('equalSplitGroup').style.display = 'none';
+                document.getElementById('customSplitGroup').style.display = 'block';
+                // 切換時重算個人金額
+                recalcCustomShares();
+            }
+        }
 
         async function fetchExpensesFromCloud() {
             if (API_URL.includes("YOUR_SCRIPT_ID")) {
-                document.getElementById('expenseList').innerHTML = '<div style="color:red; font-size:12px;">請先在 JS 中設定步驟一取得的 API_URL 網址！</div>';
+                document.getElementById('expenseList').innerHTML = '<div style="color:red; font-size:12px;">請先在 JS 中設定 API_URL 網址！</div>';
                 return;
             }
             try {
                 let res = await fetch(API_URL);
                 let data = await res.json();
-                expenses = data.map(item => ({
-                    ...item,
-                    amount: Number(item.amount),
-                    members: typeof item.members === 'string' ? item.members.split(',') : item.members
-                }));
+                expenses = data.map(item => {
+                    let parsedShares = null;
+                    if (item.shares) {
+                        try {
+                            parsedShares = typeof item.shares === 'string' ? JSON.parse(item.shares) : item.shares;
+                        } catch (e) {
+                            parsedShares = null;
+                        }
+                    }
+                    return {
+                        ...item,
+                        amount: Number(item.amount),
+                        members: typeof item.members === 'string' ? item.members.split(',') : item.members,
+                        shares: parsedShares
+                    };
+                });
                 updateExpenseUI();
             } catch (e) {
                 console.error("讀取失敗:", e);
@@ -1097,6 +1408,7 @@
         }
 
         function renderMembersUI() {
+            // 成員標籤
             const tagsContainer = document.getElementById('memberTagsList');
             tagsContainer.innerHTML = '';
             members.forEach((m, idx) => {
@@ -1106,6 +1418,7 @@
                 tagsContainer.appendChild(tag);
             });
 
+            // 付款人單選
             const radioGrid = document.getElementById('payerRadioGrid');
             radioGrid.innerHTML = '';
             members.forEach((m, idx) => {
@@ -1115,6 +1428,7 @@
                 radioGrid.appendChild(item);
             });
 
+            // 均分模式成員多選
             const checkGrid = document.getElementById('membersCheckboxGrid');
             checkGrid.innerHTML = '';
             members.forEach((m) => {
@@ -1123,6 +1437,114 @@
                 item.innerHTML = `<input type="checkbox" name="splitCheck" value="${m}" checked> ${m}`;
                 checkGrid.appendChild(item);
             });
+
+            // 自訂金額模式列表
+            const customList = document.getElementById('customShareList');
+            customList.innerHTML = '';
+            members.forEach((m) => {
+                const item = document.createElement('div');
+                item.className = 'custom-share-item';
+                item.innerHTML = `
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="customCheck" value="${m}" checked onchange="toggleCustomInput('${m}')">
+                        <b>${m}</b>
+                    </label>
+                    <input type="number" id="customInput_${m}" class="form-control custom-val-input is-auto" placeholder="金額" oninput="onCustomInput('${m}')">
+                `;
+                customList.appendChild(item);
+            });
+            
+            recalcCustomShares();
+        }
+
+        // 當輸入總金額時觸發自動重算
+        function onTotalAmountInput() {
+            if (currentSplitMode === 'custom') {
+                recalcCustomShares();
+            }
+        }
+
+        // 使用者手動輸入/修改個人金額
+        function onCustomInput(name) {
+            const input = document.getElementById(`customInput_${name}`);
+            if (input.value !== '') {
+                manualCustomMembers.add(name);
+                input.classList.remove('is-auto');
+                input.classList.add('is-manual');
+            } else {
+                manualCustomMembers.delete(name);
+                input.classList.remove('is-manual');
+                input.classList.add('is-auto');
+            }
+            recalcCustomShares();
+        }
+
+        // 控制勾選框
+        function toggleCustomInput(name) {
+            const cb = document.querySelector(`input[name="customCheck"][value="${name}"]`);
+            const input = document.getElementById(`customInput_${name}`);
+            if (cb && input) {
+                input.disabled = !cb.checked;
+                if (!cb.checked) {
+                    input.value = '';
+                    manualCustomMembers.delete(name);
+                    input.classList.remove('is-manual');
+                    input.classList.add('is-auto');
+                }
+            }
+            recalcCustomShares();
+        }
+
+        // 核心邏輯：計算剩餘金額並平均分攤顯示為灰色字體
+        function recalcCustomShares() {
+            const totalExpAmount = parseFloat(document.getElementById('expAmount').value) || 0;
+
+            // 取得目前勾選的成員
+            const checkedMembers = members.filter(m => {
+                const cb = document.querySelector(`input[name="customCheck"][value="${m}"]`);
+                return cb && cb.checked;
+            });
+
+            // 分離手動輸入成員與自動分攤成員
+            const manualMembers = checkedMembers.filter(m => manualCustomMembers.has(m));
+            const autoMembers = checkedMembers.filter(m => !manualCustomMembers.has(m));
+
+            // 計算手動成員已扣除的金額總和
+            let manualSum = 0;
+            manualMembers.forEach(m => {
+                const val = parseFloat(document.getElementById(`customInput_${m}`).value) || 0;
+                manualSum += val;
+            });
+
+            // 計算剩餘金額與每人均分額度
+            const remainAmount = Math.max(0, totalExpAmount - manualSum);
+            const avgShare = autoMembers.length > 0 ? (remainAmount / autoMembers.length) : 0;
+
+            // 更新自動成員輸入框數值與灰色字體樣式
+            autoMembers.forEach(m => {
+                const input = document.getElementById(`customInput_${m}`);
+                if (input) {
+                    input.value = autoMembers.length > 0 && totalExpAmount > 0 ? Math.round(avgShare * 100) / 100 : '';
+                    input.classList.remove('is-manual');
+                    input.classList.add('is-auto');
+                }
+            });
+
+            calcCustomTotal();
+        }
+
+        function calcCustomTotal() {
+            let sum = 0;
+            members.forEach(m => {
+                const cb = document.querySelector(`input[name="customCheck"][value="${m}"]`);
+                if (cb && cb.checked) {
+                    const input = document.getElementById(`customInput_${m}`);
+                    const val = parseFloat(input ? input.value : 0);
+                    if (!isNaN(val)) sum += val;
+                }
+            });
+            document.getElementById('customTotalSum').innerText = `合計金額：¥${Math.round(sum).toLocaleString()}`;
+            return sum;
         }
 
         function addMember() {
@@ -1140,26 +1562,49 @@
                 alert('至少需保留一位成員！');
                 return;
             }
-            members.splice(idx, 1);
+            const removed = members.splice(idx, 1)[0];
+            manualCustomMembers.delete(removed);
             renderMembersUI();
         }
 
         async function saveExpense() {
             const date = document.getElementById('expDate').value;
             const name = document.getElementById('expName').value.trim();
-            const amount = parseFloat(document.getElementById('expAmount').value);
-
             const payerEl = document.querySelector('input[name="payerRadio"]:checked');
             const payer = payerEl ? payerEl.value : '';
 
-            const selectedMembers = [];
-            document.querySelectorAll('input[name="splitCheck"]:checked').forEach(cb => {
-                selectedMembers.push(cb.value);
-            });
+            let totalAmount = 0;
+            let selectedMembers = [];
+            let sharesObj = {};
 
-            if (!date || !name || isNaN(amount) || !payer || selectedMembers.length === 0) {
-                alert('請完整填寫日期、名稱、金額與付款人，並勾選分攤成員！');
-                return;
+            if (currentSplitMode === 'equal') {
+                totalAmount = parseFloat(document.getElementById('expAmount').value);
+                document.querySelectorAll('input[name="splitCheck"]:checked').forEach(cb => {
+                    selectedMembers.push(cb.value);
+                });
+
+                if (!date || !name || isNaN(totalAmount) || totalAmount <= 0 || !payer || selectedMembers.length === 0) {
+                    alert('請完整填寫日期、名稱、總金額與付款人，並至少勾選一位分攤成員！');
+                    return;
+                }
+            } else { // 自訂金額模式
+                let isValid = true;
+                document.querySelectorAll('input[name="customCheck"]:checked').forEach(cb => {
+                    const m = cb.value;
+                    const val = parseFloat(document.getElementById(`customInput_${m}`).value);
+                    if (isNaN(val) || val < 0) {
+                        isValid = false;
+                    } else {
+                        selectedMembers.push(m);
+                        sharesObj[m] = val;
+                        totalAmount += val;
+                    }
+                });
+
+                if (!date || !name || !payer || selectedMembers.length === 0 || !isValid || totalAmount <= 0) {
+                    alert('請完整填寫日期、名稱、付款人，並確認分攤金額數值有效！');
+                    return;
+                }
             }
 
             const btn = document.getElementById('btnAddExp');
@@ -1170,9 +1615,10 @@
                 action: "add",
                 date,
                 name,
-                amount,
+                amount: totalAmount,
                 payer,
-                members: selectedMembers.join(',')
+                members: selectedMembers.join(','),
+                shares: Object.keys(sharesObj).length > 0 ? JSON.stringify(sharesObj) : ""
             };
 
             try {
@@ -1213,7 +1659,21 @@
         function clearForm() {
             document.getElementById('expName').value = '';
             document.getElementById('expAmount').value = '';
+            manualCustomMembers.clear();
+            members.forEach(m => {
+                const inp = document.getElementById(`customInput_${m}`);
+                if (inp) {
+                    inp.value = '';
+                    inp.classList.remove('is-manual');
+                    inp.classList.add('is-auto');
+                }
+            });
             document.querySelectorAll('input[name="splitCheck"]').forEach(cb => cb.checked = true);
+            document.querySelectorAll('input[name="customCheck"]').forEach(cb => {
+                cb.checked = true;
+                toggleCustomInput(cb.value);
+            });
+            recalcCustomShares();
         }
 
         function updateExpenseUI() {
@@ -1232,6 +1692,20 @@
 
             expenses.forEach((item) => {
                 const twd = Math.round(item.amount * rate);
+                const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
+                
+                // 建立分攤細節顯示
+                let shareDetailStr = '';
+                if (item.shares && Object.keys(item.shares).length > 0) {
+                    const parts = [];
+                    for (let m in item.shares) {
+                        parts.push(`${m}: ¥${item.shares[m]}`);
+                    }
+                    shareDetailStr = `獨立分攤 (${parts.join(', ')})`;
+                } else {
+                    shareDetailStr = `均分: ${memList.join(', ')}`;
+                }
+
                 const div = document.createElement('div');
                 div.className = 'expense-list-item';
                 div.innerHTML = `
@@ -1239,7 +1713,7 @@
                         <span style="font-size:11px; font-weight:700; color:var(--accent-ocean); display:block;">📅 ${item.date || '未指定日期'}</span>
                         <b style="font-size:14px; color:var(--text-primary);">${item.name}</b> 
                         <span style="font-size:12px; color:var(--text-secondary);">(${item.payer} 先付)</span><br>
-                        <span style="color:var(--text-secondary); font-size:11px;">分攤: ${Array.isArray(item.members) ? item.members.join(', ') : item.members}</span>
+                        <span style="color:var(--text-secondary); font-size:11px;">${shareDetailStr}</span>
                     </div>
                     <div style="text-align:right;">
                         <div style="font-weight:700; color:var(--text-primary);">¥${item.amount.toLocaleString()}</div>
@@ -1248,14 +1722,21 @@
                 `;
                 listContainer.appendChild(div);
 
-                const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
-                const perPerson = item.amount / memList.length;
+                // 計算結算餘額
                 balances[item.payer] = (balances[item.payer] || 0) + item.amount;
-                memList.forEach(m => {
-                    balances[m] = (balances[m] || 0) - perPerson;
-                });
+                if (item.shares && Object.keys(item.shares).length > 0) {
+                    for (let m in item.shares) {
+                        balances[m] = (balances[m] || 0) - item.shares[m];
+                    }
+                } else {
+                    const perPerson = item.amount / memList.length;
+                    memList.forEach(m => {
+                        balances[m] = (balances[m] || 0) - perPerson;
+                    });
+                }
             });
 
+            // 結算算式
             const settlementDetails = document.getElementById('settlementDetails');
             let creditors = [];
             let debtors = [];
