@@ -250,10 +250,9 @@
 
         .spot-header {
             display: flex;
-            /*justify-content: space-between;*/
             align-items: center;
             margin-bottom: 10px;
-			gap: 8px; /* 設定時間、標籤之間的間距 */
+			gap: 8px;
         }
 
         .spot-time {
@@ -263,12 +262,12 @@
             color: var(--accent-ocean);
             background: #E0F2FE;
             padding: 3px 8px;
-			border-radius: 12px;       /* 圓角造型 */
+			border-radius: 12px;
         }
         
 		.spot-tag {
-			background-color: #e8f5e9; /* 淺綠色背景 */
-			color: #2e7d32;            /* 深綠色文字，確保可讀性 */
+			background-color: #e8f5e9;
+			color: #2e7d32;
 			font-size: 12px;
 			padding: 2px 8px;
 			border-radius: 4px;
@@ -276,8 +275,8 @@
 		}
 
 		.spot-food {
-			background-color: #F3E8FF; /* 淺紫色背景 */
-			color: #6B21A8;            /* 深紫色文字，確保可讀性 */
+			background-color: #F3E8FF;
+			color: #6B21A8;
 			font-size: 12px;
 			padding: 2px 8px;
 			border-radius: 4px;
@@ -560,7 +559,6 @@
             font-size: 13px;
         }
         
-        /* 樣式控制：手動修改為黑色字體，自動計算金額為灰色字體 */
         .custom-val-input.is-manual {
             color: #0F172A !important;
             font-weight: bold;
@@ -924,6 +922,7 @@
                 <div class="spot-title">🥩 蟹藏</div>
                 <img src="images/day/day4-food.jpg" class="spot-img" alt="蟹藏">
                 <div class="spot-desc">提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
+            </div>
             <div class="spot-card">
                 <div class="spot-header">
                     <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
@@ -932,7 +931,6 @@
                 <div class="spot-title">🪨 佐和田之濱</div>
                 <img src="images/day/day4-3.jpg" class="spot-img" alt="佐和田之濱">
                 <div class="spot-desc">入選「日本海灘百選」，海面上散落著1771年大地震海嘯留下的無數巨大岩石。</div>
-            </div>
             </div>
             <div class="spot-card shopping">
                 <div class="spot-header"><span class="spot-time shop-tag">採買行程</span></div>
@@ -1318,13 +1316,20 @@
                         <button type="button" class="split-type-btn" id="btnModeCustom" onclick="setSplitMode('custom')">✏️ 按個人金額</button>
                     </div>
                 </div>
-
-                <!-- 總金額輸入框（兩種模式皆保留） -->
+				
+                <div class="form-group">
+                    <label>幣別</label>
+                    <select id="expCurrency" class="form-control" onchange="onCurrencyChange()">
+                        <option value="JPY" selected>JPY (日幣)</option>
+                        <option value="TWD">TWD (台幣)</option>
+                    </select>
+                </div>
+				
                 <div class="form-group" id="totalAmountGroup">
-                    <label>總金額 (日幣 JPY)</label>
+                    <label id="labelTotalAmount">總金額 (JPY)</label>
                     <input type="number" id="expAmount" class="form-control" placeholder="例如：4500" oninput="onTotalAmountInput()">
                 </div>
-
+				
                 <!-- 均分模式：勾選成員 -->
                 <div class="form-group" id="equalSplitGroup">
                     <label>分攤成員 (勾選)</label>
@@ -1333,7 +1338,7 @@
 
                 <!-- 自訂金額模式：顯示各成員金額輸入 -->
                 <div class="form-group" id="customSplitGroup" style="display: none;">
-                    <label>分攤成員與獨立金額 (日幣 JPY)</label>
+                    <label id="labelCustomAmount">分攤成員與獨立金額 (JPY)</label>
                     <div id="customShareList" class="custom-share-list"></div>
                     <div style="font-size: 12px; color: var(--accent-ocean); font-weight: bold; margin-top: 6px; text-align: right;" id="customTotalSum">
                         合計金額：¥0
@@ -1452,13 +1457,17 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 多人共享分帳邏輯 (升級版) ---
         let members = ['Andy', 'Pink'];
         let expenses = [];
-        let currentSplitMode = 'equal'; // 'equal' 或 'custom'
-        
-        // 紀錄自訂金額模式下，哪些成員是使用者「手動輸入/修改」的
+        let currentSplitMode = 'equal'; 
         let manualCustomMembers = new Set();
+
+        function onCurrencyChange() {
+            const curr = document.getElementById('expCurrency').value;
+            document.getElementById('labelTotalAmount').innerText = `總金額 (${curr})`;
+            document.getElementById('labelCustomAmount').innerText = `分攤成員與獨立金額 (${curr})`;
+            calcCustomTotal();
+        }
 
         function setSplitMode(mode) {
             currentSplitMode = mode;
@@ -1472,7 +1481,6 @@
                 document.getElementById('btnModeEqual').classList.remove('active');
                 document.getElementById('equalSplitGroup').style.display = 'none';
                 document.getElementById('customSplitGroup').style.display = 'block';
-                // 切換時重算個人金額
                 recalcCustomShares();
             }
         }
@@ -1497,6 +1505,7 @@
                     return {
                         ...item,
                         amount: Number(item.amount),
+                        currency: item.currency || 'JPY', 
                         members: typeof item.members === 'string' ? item.members.split(',') : item.members,
                         shares: parsedShares
                     };
@@ -1509,7 +1518,6 @@
         }
 
         function renderMembersUI() {
-            // 成員標籤
             const tagsContainer = document.getElementById('memberTagsList');
             tagsContainer.innerHTML = '';
             members.forEach((m, idx) => {
@@ -1519,7 +1527,6 @@
                 tagsContainer.appendChild(tag);
             });
 
-            // 付款人單選
             const radioGrid = document.getElementById('payerRadioGrid');
             radioGrid.innerHTML = '';
             members.forEach((m, idx) => {
@@ -1529,7 +1536,6 @@
                 radioGrid.appendChild(item);
             });
 
-            // 均分模式成員多選
             const checkGrid = document.getElementById('membersCheckboxGrid');
             checkGrid.innerHTML = '';
             members.forEach((m) => {
@@ -1539,7 +1545,6 @@
                 checkGrid.appendChild(item);
             });
 
-            // 自訂金額模式列表
             const customList = document.getElementById('customShareList');
             customList.innerHTML = '';
             members.forEach((m) => {
@@ -1558,14 +1563,12 @@
             recalcCustomShares();
         }
 
-        // 當輸入總金額時觸發自動重算
         function onTotalAmountInput() {
             if (currentSplitMode === 'custom') {
                 recalcCustomShares();
             }
         }
 
-        // 使用者手動輸入/修改個人金額
         function onCustomInput(name) {
             const input = document.getElementById(`customInput_${name}`);
             if (input.value !== '') {
@@ -1580,7 +1583,6 @@
             recalcCustomShares();
         }
 
-        // 控制勾選框
         function toggleCustomInput(name) {
             const cb = document.querySelector(`input[name="customCheck"][value="${name}"]`);
             const input = document.getElementById(`customInput_${name}`);
@@ -1596,32 +1598,25 @@
             recalcCustomShares();
         }
 
-        // 核心邏輯：計算剩餘金額並平均分攤顯示為灰色字體
         function recalcCustomShares() {
             const totalExpAmount = parseFloat(document.getElementById('expAmount').value) || 0;
-
-            // 取得目前勾選的成員
             const checkedMembers = members.filter(m => {
                 const cb = document.querySelector(`input[name="customCheck"][value="${m}"]`);
                 return cb && cb.checked;
             });
 
-            // 分離手動輸入成員與自動分攤成員
             const manualMembers = checkedMembers.filter(m => manualCustomMembers.has(m));
             const autoMembers = checkedMembers.filter(m => !manualCustomMembers.has(m));
 
-            // 計算手動成員已扣除的金額總和
             let manualSum = 0;
             manualMembers.forEach(m => {
                 const val = parseFloat(document.getElementById(`customInput_${m}`).value) || 0;
                 manualSum += val;
             });
 
-            // 計算剩餘金額與每人均分額度
             const remainAmount = Math.max(0, totalExpAmount - manualSum);
             const avgShare = autoMembers.length > 0 ? (remainAmount / autoMembers.length) : 0;
 
-            // 更新自動成員輸入框數值與灰色字體樣式
             autoMembers.forEach(m => {
                 const input = document.getElementById(`customInput_${m}`);
                 if (input) {
@@ -1644,7 +1639,9 @@
                     if (!isNaN(val)) sum += val;
                 }
             });
-            document.getElementById('customTotalSum').innerText = `合計金額：¥${Math.round(sum).toLocaleString()}`;
+            const curr = document.getElementById('expCurrency').value;
+            const symbol = curr === 'JPY' ? '¥' : 'NT$';
+            document.getElementById('customTotalSum').innerText = `合計金額：${symbol}${Math.round(sum).toLocaleString()}`;
             return sum;
         }
 
@@ -1667,10 +1664,11 @@
             manualCustomMembers.delete(removed);
             renderMembersUI();
         }
-
-        async function saveExpense() {
+		
+		async function saveExpense() {
             const date = document.getElementById('expDate').value;
             const name = document.getElementById('expName').value.trim();
+            const currency = document.getElementById('expCurrency').value;
             const payerEl = document.querySelector('input[name="payerRadio"]:checked');
             const payer = payerEl ? payerEl.value : '';
 
@@ -1688,7 +1686,7 @@
                     alert('請完整填寫日期、名稱、總金額與付款人，並至少勾選一位分攤成員！');
                     return;
                 }
-            } else { // 自訂金額模式
+            } else {
                 let isValid = true;
                 document.querySelectorAll('input[name="customCheck"]:checked').forEach(cb => {
                     const m = cb.value;
@@ -1717,6 +1715,7 @@
                 date,
                 name,
                 amount: totalAmount,
+                currency: currency, 
                 payer,
                 members: selectedMembers.join(','),
                 shares: Object.keys(sharesObj).length > 0 ? JSON.stringify(sharesObj) : ""
@@ -1734,14 +1733,22 @@
                 clearForm();
                 setTimeout(fetchExpensesFromCloud, 1000);
             } catch (e) {
+                console.error(e);
                 alert('上傳失敗，請檢查網路！');
             } finally {
                 btn.disabled = false;
                 btn.innerText = "➕ 儲存並同步至雲端";
             }
         }
-
+		
         async function clearAllData() {
+            const password = prompt('請輸入清空帳目密碼：');
+            if (password === null) return; 
+            if (password !== 'taiwan') {
+                alert('密碼錯誤，無法清空資料！');
+                return;
+            }
+
             if (confirm('確定要清空雲端的所有消費紀錄嗎？')) {
                 try {
                     await fetch(API_URL, {
@@ -1760,6 +1767,9 @@
         function clearForm() {
             document.getElementById('expName').value = '';
             document.getElementById('expAmount').value = '';
+            document.getElementById('expCurrency').value = 'JPY'; 
+            onCurrencyChange();
+            
             manualCustomMembers.clear();
             members.forEach(m => {
                 const inp = document.getElementById(`customInput_${m}`);
@@ -1776,7 +1786,7 @@
             });
             recalcCustomShares();
         }
-
+		
         function updateExpenseUI() {
             const listContainer = document.getElementById('expenseList');
             const rate = parseFloat(document.getElementById('exchangeRate').value) || 0.215;
@@ -1789,63 +1799,82 @@
             }
 
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-            let balances = {};
+            let balances = {}; // 內部統一以 TWD 進行結算與計算
 
             expenses.forEach((item) => {
-                const twd = Math.round(item.amount * rate);
+                const curr = item.currency || 'JPY';
                 const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
                 
-                // 建立分攤細節顯示
+                let amountInTwd = 0;
+                let displayMain = '';
+                let displaySub = '';
+
+                if (curr === 'JPY') {
+                    displayMain = `¥${item.amount.toLocaleString()}`;
+                    displaySub = `≈ NT$${Math.round(item.amount * rate).toLocaleString()}`;
+                    amountInTwd = item.amount * rate; // 換算成 TWD 計算
+                } else {
+                    displayMain = `NT$${item.amount.toLocaleString()}`;
+                    displaySub = ''; 
+                    amountInTwd = item.amount; // TWD 直接計算
+                }
+                
                 let shareDetailStr = '';
                 if (item.shares && Object.keys(item.shares).length > 0) {
                     const parts = [];
+                    const sym = curr === 'JPY' ? '¥' : 'NT$';
                     for (let m in item.shares) {
-                        parts.push(`${m}: ¥${item.shares[m]}`);
+                        parts.push(`${m}: ${sym}${item.shares[m]}`);
                     }
                     shareDetailStr = `獨立分攤 (${parts.join(', ')})`;
                 } else {
                     shareDetailStr = `均分: ${memList.join(', ')}`;
                 }
 
+                let formattedDate = item.date || '未指定日期';
+                if (item.date) {
+                    let cleanDateStr = item.date.toString().split('T')[0].split(' ')[0];
+                    formattedDate = cleanDateStr.replace(/-/g, '/');
+                }
+
                 const div = document.createElement('div');
                 div.className = 'expense-list-item';
                 div.innerHTML = `
                     <div>
-                        <span style="font-size:11px; font-weight:700; color:var(--accent-ocean); display:block;">📅 ${item.date || '未指定日期'}</span>
+                        <span style="font-size:11px; font-weight:700; color:var(--accent-ocean); display:block;">📅 ${formattedDate}</span>
                         <b style="font-size:14px; color:var(--text-primary);">${item.name}</b> 
                         <span style="font-size:12px; color:var(--text-secondary);">(${item.payer} 先付)</span><br>
                         <span style="color:var(--text-secondary); font-size:11px;">${shareDetailStr}</span>
                     </div>
                     <div style="text-align:right;">
-                        <div style="font-weight:700; color:var(--text-primary);">¥${item.amount.toLocaleString()}</div>
-                        <div style="font-size:11px; color:var(--text-secondary);">≈ NT$${twd.toLocaleString()}</div>
+                        <div style="font-weight:700; color:var(--text-primary);">${displayMain}</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">${displaySub}</div>
                     </div>
                 `;
                 listContainer.appendChild(div);
 
-                // 計算結算餘額
-                balances[item.payer] = (balances[item.payer] || 0) + item.amount;
+                balances[item.payer] = (balances[item.payer] || 0) + amountInTwd;
                 if (item.shares && Object.keys(item.shares).length > 0) {
                     for (let m in item.shares) {
-                        balances[m] = (balances[m] || 0) - item.shares[m];
+                        let shareInTwd = curr === 'JPY' ? item.shares[m] * rate : item.shares[m];
+                        balances[m] = (balances[m] || 0) - shareInTwd;
                     }
                 } else {
-                    const perPerson = item.amount / memList.length;
+                    const perPerson = amountInTwd / memList.length;
                     memList.forEach(m => {
                         balances[m] = (balances[m] || 0) - perPerson;
                     });
                 }
             });
 
-            // 結算算式
             const settlementDetails = document.getElementById('settlementDetails');
             let creditors = [];
             let debtors = [];
 
             for (let person in balances) {
-                if (balances[person] > 1) {
+                if (balances[person] > 0.1) {
                     creditors.push({ name: person, amount: balances[person] });
-                } else if (balances[person] < -1) {
+                } else if (balances[person] < -0.1) {
                     debtors.push({ name: person, amount: -balances[person] });
                 }
             }
@@ -1854,16 +1883,16 @@
             debtors.forEach(d => {
                 creditors.forEach(c => {
                     if (d.amount > 0 && c.amount > 0) {
-                        let transferJpy = Math.min(d.amount, c.amount);
-                        let transferTwd = Math.round(transferJpy * rate);
+                        let transferTwd = Math.min(d.amount, c.amount);
+                        let equivalentJpy = Math.round(transferTwd / rate);
                         settlementText += `
                             <div style="font-size:13px; font-weight:500; color:var(--text-primary); margin-bottom:6px;">
                                 👉 <b>${d.name}</b> 應支付給 <b>${c.name}</b>：<br>
-                                <span style="font-size:15px; font-weight:700; color:var(--accent-ocean);">¥${Math.round(transferJpy).toLocaleString()}</span>
-                                <span style="font-size:12px; color:var(--text-secondary);"> (約 NT$${transferTwd.toLocaleString()})</span>
+                                <span style="font-size:15px; font-weight:700; color:var(--accent-ocean);">NT$${Math.round(transferTwd).toLocaleString()}</span>
+                                <span style="font-size:12px; color:var(--text-secondary);"> (約 ¥${equivalentJpy.toLocaleString()})</span>
                             </div>`;
-                        d.amount -= transferJpy;
-                        c.amount -= transferJpy;
+                        d.amount -= transferTwd;
+                        c.amount -= transferTwd;
                     }
                 });
             });
