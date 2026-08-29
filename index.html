@@ -250,9 +250,10 @@
 
         .spot-header {
             display: flex;
-            justify-content: space-between;
+            /*justify-content: space-between;*/
             align-items: center;
             margin-bottom: 10px;
+			gap: 8px; /* 設定時間、標籤之間的間距 */
         }
 
         .spot-time {
@@ -262,9 +263,27 @@
             color: var(--accent-ocean);
             background: #E0F2FE;
             padding: 3px 8px;
-            border-radius: 4px;
+			border-radius: 12px;       /* 圓角造型 */
         }
         
+		.spot-tag {
+			background-color: #e8f5e9; /* 淺綠色背景 */
+			color: #2e7d32;            /* 深綠色文字，確保可讀性 */
+			font-size: 12px;
+			padding: 2px 8px;
+			border-radius: 4px;
+			font-weight: 500;
+		}
+
+		.spot-food {
+			background-color: #F3E8FF; /* 淺紫色背景 */
+			color: #6B21A8;            /* 深紫色文字，確保可讀性 */
+			font-size: 12px;
+			padding: 2px 8px;
+			border-radius: 4px;
+			font-weight: 500;
+		}
+		
         .food-tag { color: #C2410C; background: #FFF7ED; }
         .shop-tag { color: #047857; background: #ECFDF5; }
 
@@ -287,6 +306,7 @@
             padding: 4px 8px;
             border-radius: 4px;
             transition: all 0.2s;
+			margin-left: auto;
         }
 
         .map-link:hover { background: #BAE6FD; }
@@ -717,47 +737,47 @@
                     <a href="https://maps.google.com/?q=Shimojishima+Airport" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🛬 抵達下地島機場</div>
-                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="下地島機場">
+                <img src="images/day/day1-1.jpg" class="spot-img" alt="下地島機場">
                 <div class="spot-desc">順利抵達充滿渡假氛圍的下地島機場，辦理入境並提取行李。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">14:00 - 15:00</span>
+                    <span class="spot-time">14:00</span>
                     <a href="https://maps.google.com/?q=Miyakojima+Car+Rental" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🚗 辦理租車取車</div>
-                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="租車">
+                <img src="images/day/day1-2.jpg" class="spot-img" alt="租車">
                 <div class="spot-desc">搭乘接駁車前往租車門市，確認車況與駕照譯本後開啟自駕之旅。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">15:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Irabu+Bridge" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌉 伊良部大橋</div>
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="伊良部大橋">
+                <img src="images/day/day1-3.jpg" class="spot-img" alt="伊良部大橋">
                 <div class="spot-desc">全長3,540公尺，跨越極致夢幻的漸層「宮古藍」海洋，體驗如飛馳於海面上的快感。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">16:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Makiyama+Observatory" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🦅 牧山展望台</div>
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="牧山展望台">
+                <img src="images/day/day1-4.jpg" class="spot-img" alt="牧山展望台">
                 <div class="spot-desc">位於伊良部島最高點，外型為灰面鷲造型，可全景俯瞰伊良部大橋與宮古本島。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">傍晚</span>
+                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Painagama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌅 Painagama Beach 海邊散步</div>
-                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="Painagama Beach">
+                <img src="images/day/day1-5.jpg" class="spot-img" alt="Painagama Beach">
                 <div class="spot-desc">靠近市區的浪漫沙灘，是欣賞夕陽餘暉與感受在地島嶼慢活步調的首選。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">晚餐</span></div>
+                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
                 <div class="spot-title">🍽️ 市區在地風味晚餐</div>
                 <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="市區晚餐">
                 <div class="spot-desc">在平良市區熱鬧街道享用沖繩傳統家常菜與美味阿古豬料理。</div>
@@ -769,38 +789,38 @@
         <div id="day2" class="tab-content">
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">上午 (約3小時)</span>
+                    <span class="spot-time">上午 (約3小時)</span><span class="spot-tag">活動</span>
                     <a href="https://maps.google.com/?q=Yabiji" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🤿 八重干瀨 / 藍洞浮潛</div>
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="浮潛">
+                <img src="images/day/day2-1.jpg" class="spot-img" alt="浮潛">
                 <div class="spot-desc">搭船前往日本最大規模的珊瑚礁群八重干瀨，深入透亮海底與熱帶魚及海龜共遊。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">活動</span></div>
+                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-tag">活動</span></div>
                 <div class="spot-title">🏄‍♂️ SUP 或 獨木舟水上體驗</div>
-                <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="SUP體驗">
+                <img src="images/day/day2-2.jpg" class="spot-img" alt="SUP體驗">
                 <div class="spot-desc">站在立槳上滑行於清澈見底的海面上，捕捉令人屏息的海島寫真。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">下午</span></div>
+                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-food">美食</span></div>
                 <div class="spot-title">☕ 下午海景咖啡廳</div>
-                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="海景咖啡">
+                <img src="images/day/day2-cafe.jpg" class="spot-img" alt="海景咖啡">
                 <div class="spot-desc">水上活動後找間臨海咖啡館，享受特調芒果飲品與悠揚樂聲。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">傍晚</span>
+                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Higashi+Hennazaki" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌇 東平安名崎 觀夕</div>
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="東平安名崎">
+                <img src="images/day/day2-3.jpg" class="spot-img" alt="東平安名崎">
                 <div class="spot-desc">長達2公里的海蝕岬角，壯麗陡峭的崖壁與浪漫落日餘暉相映成趣。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">晚餐</span></div>
+                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
                 <div class="spot-title">🍻 島居酒屋晚餐</div>
-                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="居酒屋">
+                <img src="images/day/day2-dinner.jpg" class="spot-img" alt="居酒屋">
                 <div class="spot-desc">沉浸在三線琴演奏與沖繩民謠氛圍中，搭配新鮮海鮮與冰涼啤酒。</div>
             </div>
             <div class="hotel-badge">🏨 住宿：宮古島市區飯店</div>
@@ -808,82 +828,111 @@
 
         <!-- ===== Day 3 (10/23 五) ===== -->
         <div id="day3" class="tab-content">
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">10:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 早餐</div>
+                <div class="spot-desc">在飯店附近享用早餐。</div>
+			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">11:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Yonaha+Maehama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🏖️ 與那霸前濱海灘</div>
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="與那霸前濱">
+                <img src="images/day/day3-1.jpg" class="spot-img" alt="與那霸前濱">
                 <div class="spot-desc">獲譽為「東洋第一美海灘」，綿延7公里的純白細沙與漸層湛藍海景。</div>
             </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">12:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 HARRY’S Shrimp Truck</div>
+                <img src="images/day/day3-lunch.jpg" class="spot-img" alt="HARRY'S">
+                <div class="spot-desc">享用宮古島蝦蝦飯，邊看海景。</div>
+			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">14:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Kurima+Bridge" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌉 來間大橋 & 來間島小鎮</div>
-                <img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="來間大橋">
+                <img src="images/day/day3-2.jpg" class="spot-img" alt="來間大橋">
                 <div class="spot-desc">穿過1,690公尺長的跨海大橋，前往質感文青雜貨小店與小島咖啡館。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">15:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Ryugujo+Observatory" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🏯 龍宮城展望台</div>
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="龍宮城展望台">
+                <img src="images/day/day3-3.jpg" class="spot-img" alt="龍宮城展望台">
                 <div class="spot-desc">仿造龍宮風格建造的三層樓展望台，此處是俯瞰與那霸前濱海灘的絕佳視角。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">參觀</span>
+                    <span class="spot-time">16:00</span><span class="spot-tag">參觀</span>
                     <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🧂 雪鹽博物館</div>
-                <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="雪鹽博物館">
+                <img src="images/day/day3-4.jpg" class="spot-img" alt="雪鹽博物館">
                 <div class="spot-desc">深入認識宮古島金氏世界紀錄的雪鹽製程，別忘了現場品嚐著名的雪鹽霜淇淋！</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Sunayama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">⛰️ 砂山海灘</div>
-                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="砂山海灘">
+                <img src="images/day/day3-5.jpg" class="spot-img" alt="砂山海灘">
                 <div class="spot-desc">穿越細微沙丘後即可看見由天然海蝕作用形成的經典拱形珊瑚岩海蝕洞。</div>
             </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 焼肉なかお</div>
+                <img src="images/day/day3-dinner.jpg" class="spot-img" alt="焼肉">
+                <div class="spot-desc">在飯店附近享用晚餐。</div>
+			</div>
             <div class="hotel-badge">🏨 住宿：宮古島市區飯店</div>
         </div>
 
         <!-- ===== Day 4 (10/24 六) ===== -->
         <div id="day4" class="tab-content">
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 古謝そば屋</div>
+                <img src="images/day/day4-lunch.jpg" class="spot-img" alt="古謝そば屋">
+                <div class="spot-desc">吃當地的十年老店蕎麥麵。</div>
+			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
-                    <a href="https://maps.google.com/?q=17END" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">✈️ 17END (下地島絕景)</div>
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="17END">
-                <div class="spot-desc">位於跑道盡頭的神秘絕景，退潮時呈現夢幻Tiffany藍淺灘，也是近距離看飛機起降的秘境。</div>
-            </div>
-            <div class="spot-card">
-                <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">11:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Toriike+Pond" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌀 通池</div>
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="通池">
+                <img src="images/day/day4-2.jpg" class="spot-img" alt="通池">
                 <div class="spot-desc">日本國家指定天然紀念物，兩個圓形池塘在水下相通並直連大海，散發深邃神秘氣息。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">景點</span>
+                    <span class="spot-time">13:30</span><span class="spot-tag">景點</span>
+                    <a href="https://maps.google.com/?q=17END" target="_blank" class="map-link">📍 地圖導航</a>
+                </div>
+                <div class="spot-title">✈️ 17END (下地島絕景)</div>
+                <img src="images/day/day4-1.jpg" class="spot-img" alt="17END">
+                <div class="spot-desc">位於跑道盡頭的神秘絕景，退潮時呈現夢幻Tiffany藍淺灘，也是近距離看飛機起降的秘境。</div>
+            </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">15:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 蟹藏</div>
+                <img src="images/day/day4-food.jpg" class="spot-img" alt="蟹藏">
+                <div class="spot-desc">提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Sawada+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🪨 佐和田之濱</div>
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="佐和田之濱">
+                <img src="images/day/day4-3.jpg" class="spot-img" alt="佐和田之濱">
                 <div class="spot-desc">入選「日本海灘百選」，海面上散落著1771年大地震海嘯留下的無數巨大岩石。</div>
+            </div>
             </div>
             <div class="spot-card shopping">
                 <div class="spot-header"><span class="spot-time shop-tag">採買行程</span></div>
@@ -900,18 +949,39 @@
 
         <!-- ===== Day 5 (10/25 日) ===== -->
         <div id="day5" class="tab-content">
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">10:00</span></div>
+                <div class="spot-title">🏨 市區飯店退房</div>
+                <div class="spot-desc">收拾行李準備前往東急渡假村，體驗宮古島的度假感。</div>
+            </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-title">🥩 午餐</div>
+                <div class="spot-desc">在市區享用美味午餐。</div>
+            </div>
             <div class="spot-card">
-                <div class="spot-header">
-                    <span class="spot-time">全天渡假</span>
+                <div class="spot-header"><span class="spot-time">14:00</span>
                     <a href="https://maps.google.com/?q=Miyako+Tokyu+Hotel" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🏨 宮古島東急飯店&度假村</div>
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="東急度假村">
+                <img src="images/day/day5-3.jpg" class="spot-img" alt="東急度假村">
                 <div class="spot-desc">享受奢華的海島放鬆時間！飯店直通與那霸前濱海灘，享受私人泳池、SPA與花園散步。</div>
             </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">15:00</span></div>
+                <div class="spot-title">☀️ 渡假村私人泳池</div>
+                <img src="images/day/day5-4.jpg" class="spot-img" alt="渡假村私人泳池">
+                <div class="spot-desc">享受渡假村泳池。</div>
+            </div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">17:00</span></div>
+                <div class="spot-title">☀️ 沙灘走走看夕陽</div>
+                <div class="spot-desc">在飯店外沙灘走走拍照，享受夕陽美景。</div>
+            </div>
             <div class="spot-card">
+				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
                 <div class="spot-title">🍷 渡假村奢華晚宴</div>
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="晚餐">
+                <img src="images/day/day5-dinner.jpg" class="spot-img" alt="渡假村晚餐">
                 <div class="spot-desc">在飯店附設主廚餐廳品嚐高品質宮古牛燒肉或精致法式料理，為旅程畫下美好句點。</div>
             </div>
             <div class="hotel-badge">🏨 住宿：宮古島東急飯店&度假村</div>
@@ -920,13 +990,21 @@
         <!-- ===== Day 6 (10/26 一) ===== -->
         <div id="day6" class="tab-content">
             <div class="spot-card">
+				<div class="spot-header"><span class="spot-time">9:00</span></div>
                 <div class="spot-title">☀️ 晨間悠閒時刻與退房</div>
+                <img src="images/day/day6-1.jpg" class="spot-img" alt="渡假村早餐">
                 <div class="spot-desc">享受渡假村最後一頓早餐，漫步沙灘並辦理退房手續。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">11:30</span></div>
-                <div class="spot-title">🔑 歸還租車</div>
+                <div class="spot-header"><span class="spot-time">11:00</span></div>
+                <div class="spot-title">🚗 歸還租車</div>
                 <div class="spot-desc">前往租車公司加滿油歸還車輛，搭乘接駁專車前往下地島機場。</div>
+            </div>
+            <div class="spot-card">
+                <div class="spot-header"><span class="spot-time">11:30</span></div>
+                <div class="spot-title">🛍️ 下地島機場美食購物</div>
+                <img src="images/day/day6-2.jpg" class="spot-img" alt="下地島機場餐廳">
+                <div class="spot-desc">下地島機場享用午餐，悠閒採購機場伴手禮。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header"><span class="spot-time">14:00</span></div>
@@ -939,49 +1017,63 @@
         <!-- ===== Food ===== -->
         <div id="food" class="tab-content">
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🥩 宮古牛頂級燒肉</span></div>
-                <div class="spot-title">【Nakao】宮古牛</div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🥩 宮古牛頂級燒肉</span>
+					<a href="https://maps.google.com/?q=焼肉なかお" target="_blank" class="map-link">📍 地圖導航</a></div>
+                <div class="spot-title">【焼肉なかお】Nakao 宮古牛</div>
                 <img src="images/food_01.jpg" class="spot-img" alt="宮古牛Nakao">
                 <div class="spot-desc">專賣極品宮古牛燒肉，肉質油花分佈勻稱，燒烤後入口即化。</div>
             </div>
 
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🍜 老字號宮古麵</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🍜 老字號宮古麵</span>
+					<a href="https://maps.google.com/?q=古謝そば屋" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【古謝そば屋】蕎麥麵</div>
                 <img src="images/food_02.jpg" class="spot-img" alt="古謝蕎麥麵屋">
                 <div class="spot-desc">創立數十年的老字號名店，清甜濃郁的柴魚湯頭配上軟嫩三層肉與燉軟骨。</div>
             </div>
 
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🦀 秘境海鮮</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🦀 秘境海鮮</span>					
+					<a href="https://maps.google.com/?q=海鮮悟空" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【海鮮悟空】椰子蟹</div>
                 <img src="images/food_03.jpg" class="spot-img" alt="海鮮悟空">
                 <div class="spot-desc">平良市區熱門名店，可品嚐宮古島特色野生椰子蟹料理與極鮮海鮮丼。</div>
             </div>
 
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🍢 當地風味居酒屋</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🍢 當地風味居酒屋</span>
+					<a href="https://maps.google.com/?q=島おでんたから" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【島おでんたから】居酒屋</div>
                 <img src="images/food_04.jpg" class="spot-img" alt="島おでんたから">
                 <div class="spot-desc">以燉煮極致入味的島關東煮與香酥豬腳聞名的超高人氣排隊名店。</div>
             </div>
 
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🦀 蟹肉體驗</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🦀 蟹肉體驗</span>
+					<a href="https://maps.google.com/?q=蟹蔵+Miyako" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【蟹蔵】</div>
                 <img src="images/food_05.jpg" class="spot-img" alt="蟹蔵">
                 <div class="spot-desc">位於伊良部島，提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
             </div>
 
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🥭 芒果海景咖啡</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🥭 芒果海景咖啡</span>
+					<a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
                 <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
                 <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
             </div>
 			
             <div class="spot-card food">
-                <div class="spot-header"><span class="spot-time food-tag">🚌 美式校車餐車</span></div>
+                <div class="spot-header">
+					<span class="spot-time food-tag">🚌 美式校車餐車</span>
+					<a href="https://maps.google.com/?q=HARRY’S+Shrimp+Truck" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【HARRY’S Shrimp Truck】奶油蒜蝦飯</div>
                 <img src="images/food_07.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
                 <div class="spot-desc">主打各式蝦蝦飯，美式校車、藍綠色半露天座位，再加上海岸景色，很有宮古島獨有的悠閒感。</div>
@@ -1095,87 +1187,87 @@
             <div class="section-header-title">🎁 必買伴手禮推薦</div>
             <div class="souvenir-grid">
                 <div class="souvenir-card">
-                    <img src="images/gift_01.jpg" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
+                    <img src="images/gift/gift_01.jpg" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
                     <div class="souvenir-name">1. 雪鹽白巧克力餅</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_02.jpg" class="souvenir-img" alt="雪鹽法蘭酥">
+                    <img src="images/gift/gift_02.jpg" class="souvenir-img" alt="雪鹽法蘭酥">
                     <div class="souvenir-name">2. 雪鹽法蘭酥</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_03.jpg" class="souvenir-img" alt="雪鹽薯條">
+                    <img src="images/gift/gift_03.jpg" class="souvenir-img" alt="雪鹽薯條">
                     <div class="souvenir-name">3. 雪鹽薯條</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_04.jpg" class="souvenir-img" alt="雪鹽費南雪">
+                    <img src="images/gift/gift_04.jpg" class="souvenir-img" alt="雪鹽費南雪">
                     <div class="souvenir-name">4. 雪鹽費南雪</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_05.jpg" class="souvenir-img" alt="雪鹽費南雪">
+                    <img src="images/gift/gift_05.jpg" class="souvenir-img" alt="雪鹽費南雪">
                     <div class="souvenir-name">5. 雪鹽金楚糕</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_06.jpg" class="souvenir-img" alt="雪鹽年輪蛋糕">
+                    <img src="images/gift/gift_06.jpg" class="souvenir-img" alt="雪鹽年輪蛋糕">
                     <div class="souvenir-name">6. 雪鹽年輪蛋糕</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_07.jpg" class="souvenir-img" alt="雪鹽調味料">
+                    <img src="images/gift/gift_07.jpg" class="souvenir-img" alt="雪鹽調味料">
                     <div class="souvenir-name">7. 雪鹽調味料</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_08.jpg" class="souvenir-img" alt="雪鹽汽水">
+                    <img src="images/gift/gift_08.jpg" class="souvenir-img" alt="雪鹽汽水">
                     <div class="souvenir-name">8. 宮古島雪鹽汽水</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_09.jpg" class="souvenir-img" alt="雪鹽肥皂">
+                    <img src="images/gift/gift_09.jpg" class="souvenir-img" alt="雪鹽肥皂">
                     <div class="souvenir-name">9. 宮古島雪鹽肥皂</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_10.jpg" class="souvenir-img" alt="紅芋塔">
+                    <img src="images/gift/gift_10.jpg" class="souvenir-img" alt="紅芋塔">
                     <div class="souvenir-name">10. 紅芋塔 / 紅薯塔</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_11.jpg" class="souvenir-img" alt="Monte Doll香蕉蛋糕">
+                    <img src="images/gift/gift_11.jpg" class="souvenir-img" alt="Monte Doll香蕉蛋糕">
                     <div class="souvenir-name">11. Monte Doll香蕉蛋糕</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_12.jpg" class="souvenir-img" alt="芒果夾心餅乾">
+                    <img src="images/gift/gift_12.jpg" class="souvenir-img" alt="芒果夾心餅乾">
                     <div class="souvenir-name">12. 芒果夾心餅乾</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_13.jpg" class="souvenir-img" alt="宮古島堅果">
+                    <img src="images/gift/gift_13.jpg" class="souvenir-img" alt="宮古島堅果">
                     <div class="souvenir-name">13. 宮古島堅果酥</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_14.jpg" class="souvenir-img" alt="守護君周邊">
+                    <img src="images/gift/gift_14.jpg" class="souvenir-img" alt="守護君周邊">
                     <div class="souvenir-name">14. 守護君周邊商品</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_15.jpg" class="souvenir-img" alt="宮古島帆布袋">
+                    <img src="images/gift/gift_15.jpg" class="souvenir-img" alt="宮古島帆布袋">
                     <div class="souvenir-name">15. 宮古島帆布袋</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_16.jpg" class="souvenir-img" alt="宮古島磁鐵">
+                    <img src="images/gift/gift_16.jpg" class="souvenir-img" alt="宮古島磁鐵">
                     <div class="souvenir-name">16. 宮古島磁鐵</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_17.jpg" class="souvenir-img" alt="特色T-shirt">
+                    <img src="images/gift/gift_17.jpg" class="souvenir-img" alt="特色T-shirt">
                     <div class="souvenir-name">17. 宮古島 T-shirt</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_18.jpg" class="souvenir-img" alt="Blue Seal周邊">
+                    <img src="images/gift/gift_18.jpg" class="souvenir-img" alt="Blue Seal周邊">
                     <div class="souvenir-name">18. Blue Seal 冰淇淋</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_19.jpg" class="souvenir-img" alt="Orion周邊">
+                    <img src="images/gift/gift_19.jpg" class="souvenir-img" alt="Orion周邊">
                     <div class="souvenir-name">19. Orion 周邊商品</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_20.jpg" class="souvenir-img" alt="曬黑 Hello Kitty">
+                    <img src="images/gift/gift_20.jpg" class="souvenir-img" alt="曬黑 Hello Kitty">
                     <div class="souvenir-name">20. 曬黑 Hello Kitty</div>
                 </div>
                 <div class="souvenir-card">
-                    <img src="images/gift_21.jpg" class="souvenir-img" alt="Hydro Flask水壺">
+                    <img src="images/gift/gift_21.jpg" class="souvenir-img" alt="Hydro Flask水壺">
                     <div class="souvenir-name">21. 下地島 Hydro Flask</div>
                 </div>
             </div>
