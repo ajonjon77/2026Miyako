@@ -265,26 +265,9 @@
 			border-radius: 12px;
         }
         
-		.spot-tag {
-			background-color: #e8f5e9;
-			color: #2e7d32;
-			font-size: 12px;
-			padding: 2px 8px;
-			border-radius: 4px;
-			font-weight: 500;
-		}
-
-		.spot-food {
-			background-color: #F3E8FF;
-			color: #6B21A8;
-			font-size: 12px;
-			padding: 2px 8px;
-			border-radius: 4px;
-			font-weight: 500;
-		}
-		
-        .food-tag { color: #C2410C; background: #FFF7ED; }
-        .shop-tag { color: #047857; background: #ECFDF5; }
+		.spot-tag { color: #2E7D32; background: #E8F5E9; border-radius: 4px }
+        .food-tag { color: #C2410C; background: #FFF7ED; border-radius: 4px }
+        .shop-tag { color: #047857; background: #ECFDF5; border-radius: 4px }
 
         .spot-title {
             font-size: 17px;
@@ -418,6 +401,12 @@
             color: var(--text-primary);
             cursor: pointer;
             flex: 1;
+            transition: all 0.2s ease;
+        }
+        /* 需求2: Checklist 的項目打勾後, 文字變為灰色 + 刪除線 */
+        .checkbox-wrapper input[type="checkbox"]:checked + label {
+            color: #94A3B8;
+            text-decoration: line-through;
         }
 
         .calc-card {
@@ -468,6 +457,27 @@
             font-size: 14px;
             background: #FFF;
         }
+		
+		.form-row {
+			display: flex;
+			gap: 12px;           /* 設定選單與金額輸入框之間的間距 */
+			align-items: flex-end; /* 關鍵：確保輸入框與選單的底部對齊，不會因為標籤長度受影響 */
+		}
+
+		/* 幣別選單區塊：固定寬度 */
+		.form-row .form-group:first-child {
+			flex: 0 0 120px;     /* 可自由調整幣別欄位的寬度，如 110px ~ 130px */
+		}
+
+		/* 總金額區塊：自動填滿剩餘空間 */
+		.form-row #totalAmountGroup {
+			flex: 1;
+		}
+
+		/* 確保輸入框與下拉選單 100% 寬度填滿容器 */
+		.form-group .form-control {
+			width: 100%;
+		}
 
         .member-tags {
             display: flex;
@@ -591,6 +601,20 @@
             border-bottom: 1px dashed var(--border-light);
             font-size: 13px;
         }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .btn-edit { color: var(--accent-ocean); background: #E0F2FE; }
+        .btn-delete { color: #DC2626; background: #FEE2E2; margin-left: 4px; }
+        .btn-edit:hover { background: #BAE6FD; }
+        .btn-delete:hover { background: #FCA5A5; }
 
         .settlement-card {
             background: #F0F9FF;
@@ -729,6 +753,21 @@
 
         <!-- ===== Day 1 (10/21 三) ===== -->
         <div id="day1" class="tab-content">
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">07:30</span></div>
+                <div class="spot-title">🚗 出發</div>
+                <div class="spot-desc">送機服務司機家門口接送，準備前往桃園機場囉。</div>
+			</div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">08:30</span></div>
+                <div class="spot-title">🚗 抵達桃園機場</div>
+                <div class="spot-desc">抵達桃園機場，到航空公司櫃檯辦理行李托運準備出境。</div>
+			</div>
+			<div class="spot-card">
+				<div class="spot-header"><span class="spot-time">10:30</span></div>
+                <div class="spot-title">✈️ 飛機起飛</div>
+                <div class="spot-desc">找到座位帶著好心情，準備飛往宮古島囉。</div>
+			</div>
             <div class="spot-card">
                 <div class="spot-header">
                     <span class="spot-time">13:00</span>
@@ -749,7 +788,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">15:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">15:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Irabu+Bridge" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌉 伊良部大橋</div>
@@ -758,7 +797,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">16:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">16:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Makiyama+Observatory" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🦅 牧山展望台</div>
@@ -767,7 +806,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">17:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Painagama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌅 Painagama Beach 海邊散步</div>
@@ -775,7 +814,7 @@
                 <div class="spot-desc">靠近市區的浪漫沙灘，是欣賞夕陽餘暉與感受在地島嶼慢活步調的首選。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🍽️ 市區在地風味晚餐</div>
                 <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="spot-img" alt="市區晚餐">
                 <div class="spot-desc">在平良市區熱鬧街道享用沖繩傳統家常菜與美味阿古豬料理。</div>
@@ -787,7 +826,7 @@
         <div id="day2" class="tab-content">
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">上午 (約3小時)</span><span class="spot-tag">活動</span>
+                    <span class="spot-time">上午 (約3小時)</span><span class="spot-time spot-tag">活動</span>
                     <a href="https://maps.google.com/?q=Yabiji" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🤿 八重干瀨 / 藍洞浮潛</div>
@@ -795,20 +834,20 @@
                 <div class="spot-desc">搭船前往日本最大規模的珊瑚礁群八重干瀨，深入透亮海底與熱帶魚及海龜共遊。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-tag">活動</span></div>
+                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-time spot-tag">活動</span></div>
                 <div class="spot-title">🏄‍♂️ SUP 或 獨木舟水上體驗</div>
                 <img src="images/day/day2-2.jpg" class="spot-img" alt="SUP體驗">
                 <div class="spot-desc">站在立槳上滑行於清澈見底的海面上，捕捉令人屏息的海島寫真。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-food">美食</span></div>
+                <div class="spot-header"><span class="spot-time">下午</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">☕ 下午海景咖啡廳</div>
                 <img src="images/day/day2-cafe.jpg" class="spot-img" alt="海景咖啡">
                 <div class="spot-desc">水上活動後找間臨海咖啡館，享受特調芒果飲品與悠揚樂聲。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">17:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Higashi+Hennazaki" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌇 東平安名崎 觀夕</div>
@@ -816,7 +855,7 @@
                 <div class="spot-desc">長達2公里的海蝕岬角，壯麗陡峭的崖壁與浪漫落日餘暉相映成趣。</div>
             </div>
             <div class="spot-card">
-                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
+                <div class="spot-header"><span class="spot-time">18:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🍻 島居酒屋晚餐</div>
                 <img src="images/day/day2-dinner.jpg" class="spot-img" alt="居酒屋">
                 <div class="spot-desc">沉浸在三線琴演奏與沖繩民謠氛圍中，搭配新鮮海鮮與冰涼啤酒。</div>
@@ -827,13 +866,13 @@
         <!-- ===== Day 3 (10/23 五) ===== -->
         <div id="day3" class="tab-content">
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">10:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">10:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 早餐</div>
                 <div class="spot-desc">在飯店附近享用早餐。</div>
 			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">11:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">11:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Yonaha+Maehama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🏖️ 與那霸前濱海灘</div>
@@ -841,14 +880,14 @@
                 <div class="spot-desc">獲譽為「東洋第一美海灘」，綿延7公里的純白細沙與漸層湛藍海景。</div>
             </div>
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">12:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">12:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 HARRY’S Shrimp Truck</div>
                 <img src="images/day/day3-lunch.jpg" class="spot-img" alt="HARRY'S">
                 <div class="spot-desc">享用宮古島蝦蝦飯，邊看海景。</div>
 			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">14:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">14:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Kurima+Bridge" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌉 來間大橋 & 來間島小鎮</div>
@@ -857,7 +896,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">15:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">15:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Ryugujo+Observatory" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🏯 龍宮城展望台</div>
@@ -866,7 +905,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">16:00</span><span class="spot-tag">參觀</span>
+                    <span class="spot-time">16:00</span><span class="spot-time spot-tag">參觀</span>
                     <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🧂 雪鹽博物館</div>
@@ -875,7 +914,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">17:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Sunayama+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">⛰️ 砂山海灘</div>
@@ -883,7 +922,7 @@
                 <div class="spot-desc">穿越細微沙丘後即可看見由天然海蝕作用形成的經典拱形珊瑚岩海蝕洞。</div>
             </div>
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 焼肉なかお</div>
                 <img src="images/day/day3-dinner.jpg" class="spot-img" alt="焼肉">
                 <div class="spot-desc">在飯店附近享用晚餐。</div>
@@ -894,14 +933,14 @@
         <!-- ===== Day 4 (10/24 六) ===== -->
         <div id="day4" class="tab-content">
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 古謝そば屋</div>
                 <img src="images/day/day4-lunch.jpg" class="spot-img" alt="古謝そば屋">
                 <div class="spot-desc">吃當地的十年老店蕎麥麵。</div>
 			</div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">11:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">11:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Toriike+Pond" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🌀 通池</div>
@@ -910,7 +949,7 @@
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">13:30</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">13:30</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=17END" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">✈️ 17END (下地島絕景)</div>
@@ -918,14 +957,14 @@
                 <div class="spot-desc">位於跑道盡頭的神秘絕景，退潮時呈現夢幻Tiffany藍淺灘，也是近距離看飛機起降的秘境。</div>
             </div>
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">15:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">15:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 蟹藏</div>
                 <img src="images/day/day4-food.jpg" class="spot-img" alt="蟹藏">
                 <div class="spot-desc">提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
             </div>
             <div class="spot-card">
                 <div class="spot-header">
-                    <span class="spot-time">17:00</span><span class="spot-tag">景點</span>
+                    <span class="spot-time">17:00</span><span class="spot-time spot-tag">景點</span>
                     <a href="https://maps.google.com/?q=Sawada+Beach" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">🪨 佐和田之濱</div>
@@ -953,7 +992,7 @@
                 <div class="spot-desc">收拾行李準備前往東急渡假村，體驗宮古島的度假感。</div>
             </div>
 			<div class="spot-card">
-				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">11:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🥩 午餐</div>
                 <div class="spot-desc">在市區享用美味午餐。</div>
             </div>
@@ -977,7 +1016,7 @@
                 <div class="spot-desc">在飯店外沙灘走走拍照，享受夕陽美景。</div>
             </div>
             <div class="spot-card">
-				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-food">美食</span></div>
+				<div class="spot-header"><span class="spot-time">18:00</span><span class="spot-time food-tag">美食</span></div>
                 <div class="spot-title">🍷 渡假村奢華晚宴</div>
                 <img src="images/day/day5-dinner.jpg" class="spot-img" alt="渡假村晚餐">
                 <div class="spot-desc">在飯店附設主廚餐廳品嚐高品質宮古牛燒肉或精致法式料理，為旅程畫下美好句點。</div>
@@ -988,7 +1027,7 @@
         <!-- ===== Day 6 (10/26 一) ===== -->
         <div id="day6" class="tab-content">
             <div class="spot-card">
-				<div class="spot-header"><span class="spot-time">9:00</span></div>
+				<div class="spot-header"><span class="spot-time">09:00</span></div>
                 <div class="spot-title">☀️ 晨間悠閒時刻與退房</div>
                 <img src="images/day/day6-1.jpg" class="spot-img" alt="渡假村早餐">
                 <div class="spot-desc">享受渡假村最後一頓早餐，漫步沙灘並辦理退房手續。</div>
@@ -1014,6 +1053,7 @@
 
         <!-- ===== Food ===== -->
         <div id="food" class="tab-content">
+            <div class="section-header-title">🍜 餐廳推薦</div>
             <div class="spot-card food">
                 <div class="spot-header">
 					<span class="spot-time food-tag">🥩 宮古牛頂級燒肉</span>
@@ -1058,15 +1098,6 @@
                 <img src="images/food_05.jpg" class="spot-img" alt="蟹蔵">
                 <div class="spot-desc">位於伊良部島，提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
             </div>
-
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🥭 芒果海景咖啡</span>
-					<a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
-                <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
-                <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
-            </div>
 			
             <div class="spot-card food">
                 <div class="spot-header">
@@ -1075,6 +1106,16 @@
                 <div class="spot-title">【HARRY’S Shrimp Truck】奶油蒜蝦飯</div>
                 <img src="images/food_07.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
                 <div class="spot-desc">主打各式蝦蝦飯，美式校車、藍綠色半露天座位，再加上海岸景色，很有宮古島獨有的悠閒感。</div>
+            </div>
+			
+            <div class="section-header-title">☕︎ 咖啡廳.甜點店</div>
+            <div class="spot-card food">
+                <div class="spot-header">
+					<span class="spot-time food-tag">🥭 芒果海景咖啡</span>
+					<a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
+                <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
+                <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
+                <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
             </div>
         </div>
 
@@ -1182,7 +1223,7 @@
                 <div class="spot-desc">渡假風質感航廈商店，販售獨家聯名商品、時尚配件與搭機前的特色紀念品。</div>
             </div>
 
-            <div class="section-header-title">🎁 必買伴手禮推薦</div>
+            <div class="section-header-title">🎁 伴手禮推薦</div>
             <div class="souvenir-grid">
                 <div class="souvenir-card">
                     <img src="images/gift/gift_01.jpg" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
@@ -1285,12 +1326,13 @@
                 </div>
             </div>
 
-            <div class="calc-card">
-                <div class="spot-title" style="margin-bottom: 12px;">💰 新增消費記帳</div>
+            <div class="calc-card" id="formCard">
+                <!-- 需求1: 可新增也可編輯的表單 -->
+                <div class="spot-title" id="formTitle" style="margin-bottom: 12px;">💰 新增消費記帳</div>
 
                 <div class="rate-box">
                     <span>💱 匯率 (JPY ➔ TWD)</span>
-                    <div>1 日幣 = <input type="number" id="exchangeRate" class="rate-input" value="0.215" step="0.001" onchange="updateExpenseUI()"> 台幣</div>
+                    <div>1 日幣 = <input type="number" id="exchangeRate" class="rate-input" value="0.2" step="0.001" onchange="updateExpenseUI()"> 台幣</div>
                 </div>
 
                 <div class="form-group">
@@ -1303,6 +1345,21 @@
                     <input type="text" id="expName" class="form-control" placeholder="例如：古謝そば麵、個人藥妝">
                 </div>
 
+                <div class="form-row">
+					<div class="form-group">
+						<label>幣別</label>
+						<select id="expCurrency" class="form-control" onchange="onCurrencyChange()">
+							<option value="JPY" selected>JPY (日幣)</option>
+							<option value="TWD">TWD (台幣)</option>
+						</select>
+					</div>
+
+					<div class="form-group" id="totalAmountGroup">
+						<label id="labelTotalAmount">總金額 (JPY)</label>
+						<input type="number" id="expAmount" class="form-control" placeholder="例如：4500" oninput="onTotalAmountInput()">
+					</div>
+				</div>
+				
                 <div class="form-group">
                     <label>誰先付款？</label>
                     <div id="payerRadioGrid" class="checkbox-group-grid"></div>
@@ -1316,20 +1373,7 @@
                         <button type="button" class="split-type-btn" id="btnModeCustom" onclick="setSplitMode('custom')">✏️ 按個人金額</button>
                     </div>
                 </div>
-				
-                <div class="form-group">
-                    <label>幣別</label>
-                    <select id="expCurrency" class="form-control" onchange="onCurrencyChange()">
-                        <option value="JPY" selected>JPY (日幣)</option>
-                        <option value="TWD">TWD (台幣)</option>
-                    </select>
-                </div>
-				
-                <div class="form-group" id="totalAmountGroup">
-                    <label id="labelTotalAmount">總金額 (JPY)</label>
-                    <input type="number" id="expAmount" class="form-control" placeholder="例如：4500" oninput="onTotalAmountInput()">
-                </div>
-				
+								
                 <!-- 均分模式：勾選成員 -->
                 <div class="form-group" id="equalSplitGroup">
                     <label>分攤成員 (勾選)</label>
@@ -1346,6 +1390,7 @@
                 </div>
 
                 <button class="btn-primary" id="btnAddExp" onclick="saveExpense()">➕ 儲存並同步至雲端</button>
+                <button type="button" id="btnCancelEdit" onclick="cancelEdit()" style="display:none; width: 100%; margin-top: 8px; padding: 10px; background: #94A3B8; color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer;">取消編輯</button>
             </div>
 
             <div class="calc-card">
@@ -1353,6 +1398,7 @@
                     <div class="spot-title" style="margin-bottom: 0;">📋 全員共享消費明細</div>
                     <button onclick="clearAllData()" style="padding: 4px 8px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">清空所有帳目</button>
                 </div>
+                <!-- 需求1: 消費明細增加編輯/刪除功能 -->
                 <div id="expenseList">載入中...</div>
 
                 <div class="settlement-card" id="settlementResult">
@@ -1362,7 +1408,7 @@
             </div>
         </div>
 
-        <!-- ===== Checklist ===== -->
+        <!-- ===== 準備 ===== -->
         <div id="checklist" class="tab-content">
             <div class="calc-card">
                 <div class="spot-title" style="margin-bottom: 16px;">✅ 行前與隨身 CHECKLIST</div>
@@ -1389,6 +1435,15 @@
                     <div class="checkbox-wrapper"><input type="checkbox" id="c10"><label for="c10">日本 eSIM / SIM 卡 / 漫遊</label></div>
                     <div class="checkbox-wrapper"><input type="checkbox" id="c11"><label for="c11">暈船藥 / 個人常備藥品</label></div>
                 </div>
+				
+                <div class="check-group">
+                    <h4>個人用品</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="c12"><label for="c12">換洗衣物</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="c13"><label for="c13">保養品</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="c14"><label for="c14">牙膏 / 牙刷</label></div>
+                </div>
+				
+				<div class="spot-title" style="margin-bottom: 16px;">❤️ 許願清單</div>
             </div>
         </div>
 
@@ -1418,7 +1473,7 @@
         </button>
         <button class="bottom-nav-btn" id="bnav-checklist" onclick="switchTab('checklist')">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            Checklist
+            準備
         </button>
     </div>
 
@@ -1461,6 +1516,7 @@
         let expenses = [];
         let currentSplitMode = 'equal'; 
         let manualCustomMembers = new Set();
+        let editingRow = null; // 紀錄當前正在編輯的列數 (row)
 
         function onCurrencyChange() {
             const curr = document.getElementById('expCurrency').value;
@@ -1493,7 +1549,7 @@
             try {
                 let res = await fetch(API_URL);
                 let data = await res.json();
-                expenses = data.map(item => {
+                expenses = data.map((item, index) => {
                     let parsedShares = null;
                     if (item.shares) {
                         try {
@@ -1504,6 +1560,7 @@
                     }
                     return {
                         ...item,
+                        row: item.row || (index + 2), // 如果 API 有傳回 row 則優先使用，否則預設第2行起
                         amount: Number(item.amount),
                         currency: item.currency || 'JPY', 
                         members: typeof item.members === 'string' ? item.members.split(',') : item.members,
@@ -1708,10 +1765,12 @@
 
             const btn = document.getElementById('btnAddExp');
             btn.disabled = true;
-            btn.innerText = "⏳ 上傳雲端中...";
+            btn.innerText = editingRow ? "⏳ 修改同步中..." : "⏳ 上傳雲端中...";
 
-            const newRecord = {
-                action: "add",
+            const payload = {
+				targetSheet: "EXPENSES",
+                action: editingRow ? "edit" : "add",
+                row: editingRow,
                 date,
                 name,
                 amount: totalAmount,
@@ -1726,19 +1785,129 @@
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newRecord)
+                    body: JSON.stringify(payload)
                 });
 
-                alert('新增成功！正在更新資料...');
+                alert(editingRow ? '修改成功！正在更新資料...' : '新增成功！正在更新資料...');
                 clearForm();
                 setTimeout(fetchExpensesFromCloud, 1000);
             } catch (e) {
                 console.error(e);
-                alert('上傳失敗，請檢查網路！');
+                alert('處理失敗，請檢查網路！');
             } finally {
                 btn.disabled = false;
-                btn.innerText = "➕ 儲存並同步至雲端";
             }
+        }
+
+        // 需求1: 編輯單筆紀錄
+        function editExpense(idx) {
+            const item = expenses[idx];
+            if (!item) return;
+
+            editingRow = item.row;
+            document.getElementById('formTitle').innerText = '✏️ 修改消費記帳';
+            document.getElementById('btnAddExp').innerText = '💾 儲存修改並同步至雲端';
+            document.getElementById('btnCancelEdit').style.display = 'block';
+
+            // 帶入日期
+            if (item.date) {
+                let dateObj = new Date(item.date);
+				
+				if (!isNaN(dateObj.getTime())) {
+					let year = dateObj.getFullYear();
+					let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+					let day = String(dateObj.getDate()).padStart(2, '0');
+					
+					// 組合出 input[type="date"] 所需的 YYYY-MM-DD 格式
+					document.getElementById('expDate').value = `${year}-${month}-${day}`;
+				} else {
+					// 防呆：若無法轉為 Date 物件，退回原切割邏輯
+					document.getElementById('expDate').value = item.date.toString().split('T')[0];
+				}
+            }
+            
+            document.getElementById('expName').value = item.name;
+            document.getElementById('expCurrency').value = item.currency || 'JPY';
+            document.getElementById('expAmount').value = item.amount;
+            onCurrencyChange();
+
+            // 確保付款人與分攤成員中有紀錄的人員
+            const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
+            memList.forEach(m => {
+                if (!members.includes(m)) members.push(m);
+            });
+            if (item.payer && !members.includes(item.payer)) members.push(item.payer);
+            renderMembersUI();
+
+            // 設定付款人
+            const payerRadio = document.querySelector(`input[name="payerRadio"][value="${item.payer}"]`);
+            if (payerRadio) payerRadio.checked = true;
+
+            // 判斷分攤模式
+            if (item.shares && Object.keys(item.shares).length > 0) {
+                setSplitMode('custom');
+                manualCustomMembers.clear();
+                members.forEach(m => {
+                    const cb = document.querySelector(`input[name="customCheck"][value="${m}"]`);
+                    const inp = document.getElementById(`customInput_${m}`);
+                    if (item.shares[m] !== undefined) {
+                        if (cb) cb.checked = true;
+                        if (inp) {
+                            inp.disabled = false;
+                            inp.value = item.shares[m];
+                            inp.classList.remove('is-auto');
+                            inp.classList.add('is-manual');
+                        }
+                        manualCustomMembers.add(m);
+                    } else {
+                        if (cb) cb.checked = false;
+                        if (inp) {
+                            inp.disabled = true;
+                            inp.value = '';
+                        }
+                    }
+                });
+                calcCustomTotal();
+            } else {
+                setSplitMode('equal');
+                document.querySelectorAll('input[name="splitCheck"]').forEach(cb => {
+                    cb.checked = memList.includes(cb.value);
+                });
+            }
+
+            // 滾動至表單處
+            document.getElementById('formCard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 需求1: 刪除單筆紀錄
+        async function deleteExpense(idx) {
+            const item = expenses[idx];
+            if (!item) return;
+
+            if (!confirm(`確定要刪除「${item.name}」這筆消費紀錄嗎？`)) return;
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        targetSheet: "EXPENSES", 
+                        action: "delete", 
+                        row: item.row 
+                    })
+                });
+
+                alert('刪除指令已發送！正在更新資料...');
+                setTimeout(fetchExpensesFromCloud, 1000);
+            } catch (e) {
+                console.error(e);
+                alert('刪除失敗，請檢查網路！');
+            }
+        }
+
+        function cancelEdit() {
+            clearForm();
         }
 		
         async function clearAllData() {
@@ -1755,7 +1924,7 @@
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: "clear" })
+                        body: JSON.stringify({ targetSheet: "EXPENSES", action: "clear" })
                     });
                     setTimeout(fetchExpensesFromCloud, 1000);
                 } catch (e) {
@@ -1765,6 +1934,11 @@
         }
 
         function clearForm() {
+            editingRow = null;
+            document.getElementById('formTitle').innerText = '💰 新增消費記帳';
+            document.getElementById('btnAddExp').innerText = '➕ 儲存並同步至雲端';
+            document.getElementById('btnCancelEdit').style.display = 'none';
+
             document.getElementById('expName').value = '';
             document.getElementById('expAmount').value = '';
             document.getElementById('expCurrency').value = 'JPY'; 
@@ -1784,6 +1958,7 @@
                 cb.checked = true;
                 toggleCustomInput(cb.value);
             });
+            setSplitMode('equal');
             recalcCustomShares();
         }
 		
@@ -1801,7 +1976,7 @@
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
             let balances = {}; // 內部統一以 TWD 進行結算與計算
 
-            expenses.forEach((item) => {
+            expenses.forEach((item, idx) => {
                 const curr = item.currency || 'JPY';
                 const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
                 
@@ -1831,12 +2006,28 @@
                     shareDetailStr = `均分: ${memList.join(', ')}`;
                 }
 
-                let formattedDate = item.date || '未指定日期';
-                if (item.date) {
-                    let cleanDateStr = item.date.toString().split('T')[0].split(' ')[0];
-                    formattedDate = cleanDateStr.replace(/-/g, '/');
-                }
+                let formattedDate = '未指定日期';
 
+				if (item.date) {
+					// 1. 將輸入的日期字串轉為 JavaScript Date 物件（會自動轉為瀏覽器的本地時區）
+					let dateObj = new Date(item.date);
+					
+					// 防呆：確認是否為有效 Date
+					if (!isNaN(dateObj.getTime())) {
+						let year = dateObj.getFullYear();
+						// getMonth() 回傳 0~11，所以要 +1，並補零至 2 位數
+						let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+						let day = String(dateObj.getDate()).padStart(2, '0');
+						
+						// 組合出經過時區校正後的 YYYY/MM/DD
+						formattedDate = `${year}/${month}/${day}`;
+					} else {
+						// 若無法解析為 Date，退回原始字串處理
+						formattedDate = item.date.toString().split('T')[0].replace(/-/g, '/');
+					}
+				}
+
+                // 需求1: 渲染編輯與刪除按鈕
                 const div = document.createElement('div');
                 div.className = 'expense-list-item';
                 div.innerHTML = `
@@ -1849,6 +2040,10 @@
                     <div style="text-align:right;">
                         <div style="font-weight:700; color:var(--text-primary);">${displayMain}</div>
                         <div style="font-size:11px; color:var(--text-secondary);">${displaySub}</div>
+                        <div style="margin-top: 4px;">
+                            <button class="action-btn btn-edit" onclick="editExpense(${idx})">✏️ 編輯</button>
+                            <button class="action-btn btn-delete" onclick="deleteExpense(${idx})">🗑️ 刪除</button>
+                        </div>
                     </div>
                 `;
                 listContainer.appendChild(div);
