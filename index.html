@@ -237,7 +237,7 @@
             color: var(--text-secondary);
             line-height: 1.7;
         }
-
+				
         .spot-card {
             background: var(--card-bg);
             border-radius: 8px;
@@ -292,7 +292,15 @@
         }
 
         .map-link:hover { background: #BAE6FD; }
-
+		
+		.map-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+		
         .spot-img {
             width: 100%;
             height: 160px;
@@ -403,7 +411,7 @@
             flex: 1;
             transition: all 0.2s ease;
         }
-        /* 需求2: Checklist 的項目打勾後, 文字變為灰色 + 刪除線 */
+        /* Checklist 與 Map 的項目打勾後, 文字變為灰色 + 刪除線 */
         .checkbox-wrapper input[type="checkbox"]:checked + label {
             color: #94A3B8;
             text-decoration: line-through;
@@ -460,21 +468,18 @@
 		
 		.form-row {
 			display: flex;
-			gap: 12px;           /* 設定選單與金額輸入框之間的間距 */
-			align-items: flex-end; /* 關鍵：確保輸入框與選單的底部對齊，不會因為標籤長度受影響 */
+			gap: 12px;           
+			align-items: flex-end; 
 		}
 
-		/* 幣別選單區塊：固定寬度 */
 		.form-row .form-group:first-child {
-			flex: 0 0 120px;     /* 可自由調整幣別欄位的寬度，如 110px ~ 130px */
+			flex: 0 0 120px;     
 		}
 
-		/* 總金額區塊：自動填滿剩餘空間 */
 		.form-row #totalAmountGroup {
 			flex: 1;
 		}
 
-		/* 確保輸入框與下拉選單 100% 寬度填滿容器 */
 		.form-group .form-control {
 			width: 100%;
 		}
@@ -636,7 +641,7 @@
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
-            padding: 10px 8px 16px 8px;
+            padding: 10px 4px 16px 4px;
             z-index: 100;
         }
 
@@ -729,8 +734,7 @@
                     <span class="label">Day 5 - Day 6 住宿</span>
                     <span class="detail">宮古島東急飯店&度假村 (Tokyu Hotel & Resorts)</span>
                 </div>
-            </div>
-
+            </div>		
             <h3 style="font-size: 14px; letter-spacing: 1px; margin: 20px 0 10px 0; color: var(--accent-ocean);">JOURNAL INDEX / 行程快速入口</h3>
             <div class="quick-links-grid">
                 <div class="quick-link-btn" onclick="switchTab('day1')"><span>Day 1</span><span style="font-size:10px; color:var(--text-secondary);">🛬抵達宮古島</span></div>
@@ -748,6 +752,77 @@
                     <li>準備防曬用品、薄外套、防刮膠鞋、防水袋與個人藥品。</li>
                     <li>日本自駕請注意靠左行駛、遵循速限並確實禮讓行人。</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- ===== Map (地圖導覽與景點清單) ===== -->
+        <div id="map" class="tab-content">
+            <div class="calc-card">
+                <div class="spot-title" style="margin-bottom: 12px;">
+                    🗺️ 宮古島全島導覽地圖
+                    <span class="sync-badge">☁️ 雲端同步</span>
+                </div>
+                <img src="images/map.jpg" class="map-img" alt="宮古島全圖" style="margin-top: 0;">
+                <p style="font-size: 12px; color: var(--text-secondary); text-align: center; margin-top: -6px;">點擊勾選框打勾代表已造訪，字體會轉灰劃掉並即時同步至雲端。</p>
+            </div>
+
+            <div class="calc-card">
+                <div class="check-group">
+                    <h4>1. 宮古島上的十個推薦觀光景點</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_1" onchange="syncMapState('map_1_1')"><label for="map_1_1">1.1. 與那霸前濱海灘 (Yonaha Maehama)</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_2" onchange="syncMapState('map_1_2')"><label for="map_1_2">1.2. 東平安名崎</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_3" onchange="syncMapState('map_1_3')"><label for="map_1_3">1.3. 伊良部大橋</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_4" onchange="syncMapState('map_1_4')"><label for="map_1_4">1.4. 池間島與池間大橋</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_5" onchange="syncMapState('map_1_5')"><label for="map_1_5">1.5. 來間島和來間大橋</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_6" onchange="syncMapState('map_1_6')"><label for="map_1_6">1.6. 沙山海灘</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_7" onchange="syncMapState('map_1_7')"><label for="map_1_7">1.7. 八重干瀨</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_8" onchange="syncMapState('map_1_8')"><label for="map_1_8">1.8. 宮古島上的藍洞</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_9" onchange="syncMapState('map_1_9')"><label for="map_1_9">1.9. 牧山展望台</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_1_10" onchange="syncMapState('map_1_10')"><label for="map_1_10">1.10. 17END (One Seventeen End)</label></div>
+                </div>
+
+                <div class="check-group">
+                    <h4>2. 五個受歡迎的海灘和洞中海灘</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_2_1" onchange="syncMapState('map_2_1')"><label for="map_2_1">2.1. 新城海岸</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_2_2" onchange="syncMapState('map_2_2')"><label for="map_2_2">2.2. Imgaya 海洋花園</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_2_3" onchange="syncMapState('map_2_3')"><label for="map_2_3">2.3. 西吉拉海灘</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_2_4" onchange="syncMapState('map_2_4')"><label for="map_2_4">2.4. Bora Spring (Bora) 海灘</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_2_5" onchange="syncMapState('map_2_5')"><label for="map_2_5">2.5. 長山海灘</label></div>
+                </div>
+
+                <div class="check-group">
+                    <h4>3. 下雨天也能玩得開心！宮古島的五個推薦觀光景點</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_3_1" onchange="syncMapState('map_3_1')"><label for="map_3_1">3.1. 宮古島市熱帶植物園</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_3_2" onchange="syncMapState('map_3_2')"><label for="map_3_2">3.2. 宮古島市立博物館</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_3_3" onchange="syncMapState('map_3_3')"><label for="map_3_3">3.3. Ueno 德國文化村</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_3_4" onchange="syncMapState('map_3_4')"><label for="map_3_4">3.4. 宮古島海底公園</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_3_5" onchange="syncMapState('map_3_5')"><label for="map_3_5">3.5. 雪鹽博物館</label></div>
+                </div>
+
+                <div class="check-group">
+                    <h4>4. 自然與冒險的最佳境界！五個互動景點</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_4_1" onchange="syncMapState('map_4_1')"><label for="map_4_1">4.1. 南瓜洞 (藍洞)</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_4_2" onchange="syncMapState('map_4_2')"><label for="map_4_2">4.2. 島尻的紅樹林</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_4_3" onchange="syncMapState('map_4_3')"><label for="map_4_3">4.3. 西吉拉黃金溫泉</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_4_4" onchange="syncMapState('map_4_4')"><label for="map_4_4">4.4. 宮古島市體驗工藝村</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_4_5" onchange="syncMapState('map_4_5')"><label for="map_4_5">4.5. 吉野海岸</label></div>
+                </div>
+
+                <div class="check-group">
+                    <h4>5. 四個上相且隱密的景點</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_5_1" onchange="syncMapState('map_5_1')"><label for="map_5_1">5.1. 心岩</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_5_2" onchange="syncMapState('map_5_2')"><label for="map_5_2">5.2. 宮古神社</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_5_3" onchange="syncMapState('map_5_3')"><label for="map_5_3">5.3. 街道池塘 (通池)</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_5_4" onchange="syncMapState('map_5_4')"><label for="map_5_4">5.4. 西軒那岬</label></div>
+                </div>
+
+                <div class="check-group">
+                    <h4>6. 宮古島可享受的海上活動</h4>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_6_1" onchange="syncMapState('map_6_1')"><label for="map_6_1">6.1. 浮潛 / 潛水</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_6_2" onchange="syncMapState('map_6_2')"><label for="map_6_2">6.2. SUP / 獨木舟</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_6_3" onchange="syncMapState('map_6_3')"><label for="map_6_3">6.3. 探索南瓜洞洞穴 (南瓜形鐘乳石)</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" id="map_6_4" onchange="syncMapState('map_6_4')"><label for="map_6_4">6.4. 八重干瀨 (Yabiji) 旅遊</label></div>
+                </div>
             </div>
         </div>
 
@@ -1104,7 +1179,7 @@
 					<span class="spot-time food-tag">🚌 美式校車餐車</span>
 					<a href="https://maps.google.com/?q=HARRY’S+Shrimp+Truck" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【HARRY’S Shrimp Truck】奶油蒜蝦飯</div>
-                <img src="images/food_07.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
+                <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
                 <div class="spot-desc">主打各式蝦蝦飯，美式校車、藍綠色半露天座位，再加上海岸景色，很有宮古島獨有的悠閒感。</div>
             </div>
 			
@@ -1114,7 +1189,7 @@
 					<span class="spot-time food-tag">🥭 芒果海景咖啡</span>
 					<a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
                 <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
-                <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
+                <img src="images/cafe_01.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
                 <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
             </div>
         </div>
@@ -1129,7 +1204,7 @@
                     <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">雪塩博物館</div>
-                <img src="images/shop_01.jpg" class="spot-img" alt="雪塩博物館">
+                <img src="images/shop/shop_01.jpg" class="spot-img" alt="雪塩博物館">
                 <div class="spot-desc">認識極細雪鹽製程，現場販售多元雪鹽商品、美妝品及招牌雪鹽霜淇淋。</div>
             </div>
 
@@ -1139,7 +1214,7 @@
                     <a href="https://maps.google.com/?q=Don+Quijote+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">唐吉訶德 宮古島店</div>
-                <img src="images/shop_02.jpg" class="spot-img" alt="唐吉訶德">
+                <img src="images/shop/shop_02.jpg" class="spot-img" alt="唐吉訶德">
                 <div class="spot-desc">營業至深夜的大型賣場，一次採買齊全沖繩限定藥妝、零食與各類生活雜貨。</div>
             </div>
 
@@ -1149,7 +1224,7 @@
                     <a href="https://maps.google.com/?q=MaxValu+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">永旺宮古南購物中心 AEON TOWN</div>
-                <img src="images/shop_03.jpg" class="spot-img" alt="MaxValu超市">
+                <img src="images/shop/shop_03.jpg" class="spot-img" alt="MaxValu超市">
                 <div class="spot-desc">集結24H超市、藥妝、服飾與餐廳的綜合商圈，停車極為便利。</div>
             </div>
 
@@ -1159,7 +1234,7 @@
                     <a href="https://maps.google.com/?q=Cross+Point+Market+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">Cross Point Market</div>
-                <img src="images/shop_04.jpg" class="spot-img" alt="Cross Point Market">
+                <img src="images/shop/shop_04.jpg" class="spot-img" alt="Cross Point Market">
                 <div class="spot-desc">嚴選沖繩與宮古島質感雜貨、文創伴手禮、特色服飾及精緻紀念品。</div>
             </div>
 
@@ -1169,7 +1244,7 @@
                     <a href="https://maps.google.com/?q=Nishizato+Street" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">西里大通街</div>
-                <img src="images/shop_05.jpg" class="spot-img" alt="西里大通街">
+                <img src="images/shop/shop_05.jpg" class="spot-img" alt="西里大通街">
                 <div class="spot-desc">市區熱鬧的商店街，集結在地手工藝品店、泡盛酒專賣店與特色居酒屋。</div>
             </div>
 
@@ -1179,7 +1254,7 @@
                     <a href="https://maps.google.com/?q=Shima+no+Eki+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">島之站宮古（島の駅みやこ）</div>
-                <img src="images/shop_06.jpg" class="spot-img" alt="島之站宮古">
+                <img src="images/shop/shop_06.jpg" class="spot-img" alt="島之站宮古">
                 <div class="spot-desc">當地居民與遊客最愛的特產市場，產地直送新鮮芒果、火龍果與各種海島抹醬。</div>
             </div>
 
@@ -1189,7 +1264,7 @@
                     <a href="https://maps.google.com/?q=MUJI+Miyakojima+City" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">無印良品 宮古島City店</div>
-                <img src="images/shop_07.jpg" class="spot-img" alt="無印良品宮古島">
+                <img src="images/shop/shop_07.jpg" class="spot-img" alt="無印良品宮古島">
                 <div class="spot-desc">宮古島首家無印良品門市，極簡舒適空間，適合補給服飾、保養品與旅行雜物。</div>
             </div>
 
@@ -1199,7 +1274,7 @@
                     <a href="https://maps.google.com/?q=DAISO+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">大創 DAISO 宮古南SC店</div>
-                <img src="images/shop_08.jpg" class="spot-img" alt="DAISO">
+                <img src="images/shop/shop_08.jpg" class="spot-img" alt="DAISO">
                 <div class="spot-desc">品項齊全的百元商店，補充海邊玩水小物、收納袋與超值日本生活用品。</div>
             </div>
 			
@@ -1209,7 +1284,7 @@
                     <a href="https://maps.google.com/?q=Monte+Doll+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">Monte Doll (モンテドール)</div>
-                <img src="images/shop_09.jpg" class="spot-img" alt="Monte Doll">
+                <img src="images/shop/shop_09.jpg" class="spot-img" alt="Monte Doll">
                 <div class="spot-desc">宮古島飄香數十年的經典伴手禮，使用天然香蕉烘焙，口感紮實濃郁。。</div>
             </div>
 			
@@ -1219,7 +1294,7 @@
                     <a href="https://maps.google.com/?q=coral+port+the+Shop+Shimojishima" target="_blank" class="map-link">📍 地圖導航</a>
                 </div>
                 <div class="spot-title">下地島機場 coral port the Shop</div>
-                <img src="images/shop_10.jpg" class="spot-img" alt="coral port the Shop">
+                <img src="images/shop/shop_10.jpg" class="spot-img" alt="coral port the Shop">
                 <div class="spot-desc">渡假風質感航廈商店，販售獨家聯名商品、時尚配件與搭機前的特色紀念品。</div>
             </div>
 
@@ -1327,7 +1402,6 @@
             </div>
 
             <div class="calc-card" id="formCard">
-                <!-- 需求1: 可新增也可編輯的表單 -->
                 <div class="spot-title" id="formTitle" style="margin-bottom: 12px;">💰 新增消費記帳</div>
 
                 <div class="rate-box">
@@ -1365,7 +1439,6 @@
                     <div id="payerRadioGrid" class="checkbox-group-grid"></div>
                 </div>
 
-                <!-- 分攤模式切換 -->
                 <div class="form-group">
                     <label>分攤方式</label>
                     <div class="split-type-selector">
@@ -1374,13 +1447,11 @@
                     </div>
                 </div>
 								
-                <!-- 均分模式：勾選成員 -->
                 <div class="form-group" id="equalSplitGroup">
                     <label>分攤成員 (勾選)</label>
                     <div id="membersCheckboxGrid" class="checkbox-group-grid"></div>
                 </div>
 
-                <!-- 自訂金額模式：顯示各成員金額輸入 -->
                 <div class="form-group" id="customSplitGroup" style="display: none;">
                     <label id="labelCustomAmount">分攤成員與獨立金額 (JPY)</label>
                     <div id="customShareList" class="custom-share-list"></div>
@@ -1398,7 +1469,6 @@
                     <div class="spot-title" style="margin-bottom: 0;">📋 全員共享消費明細</div>
                     <button onclick="clearAllData()" style="padding: 4px 8px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">清空所有帳目</button>
                 </div>
-                <!-- 需求1: 消費明細增加編輯/刪除功能 -->
                 <div id="expenseList">載入中...</div>
 
                 <div class="settlement-card" id="settlementResult">
@@ -1459,6 +1529,10 @@
             <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
             行程
         </button>
+        <button class="bottom-nav-btn" id="bnav-map" onclick="switchTab('map')">
+			<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.89 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+			地圖
+		</button>
         <button class="bottom-nav-btn" id="bnav-food" onclick="switchTab('food')">
             <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.46 3.9 3.45 4.35V21h3v-7.65c1.99-.45 3.45-2.23 3.45-4.35V2h-2v7zm7-7h-1c-2.21 0-4 1.79-4 4v7h2v8h3V2z"/></svg>
             美食
@@ -1512,11 +1586,47 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        /* ===== 地圖 Spot 雲端同步邏輯 (Sheet: MAP) ===== */
+        async function fetchMapStateFromCloud() {
+            try {
+                let res = await fetch(`${API_URL}?targetSheet=MAP`);
+                let data = await res.json();
+                if (Array.isArray(data)) {
+                    data.forEach(item => {
+                        const el = document.getElementById(item.id);
+                        if (el) el.checked = (item.checked === true || item.checked === "true");
+                    });
+                }
+            } catch (e) {
+                console.error("讀取地圖點位雲端資料失敗:", e);
+            }
+        }
+
+        async function syncMapState(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const payload = {
+                targetSheet: "MAP",
+                id: id,
+                checked: el.checked
+            };
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (e) {
+                console.error("更新地圖點位狀態失敗:", e);
+            }
+        }
+
         let members = ['Andy', 'Pink'];
         let expenses = [];
         let currentSplitMode = 'equal'; 
         let manualCustomMembers = new Set();
-        let editingRow = null; // 紀錄當前正在編輯的列數 (row)
+        let editingRow = null;
 
         function onCurrencyChange() {
             const curr = document.getElementById('expCurrency').value;
@@ -1560,7 +1670,7 @@
                     }
                     return {
                         ...item,
-                        row: item.row || (index + 2), // 如果 API 有傳回 row 則優先使用，否則預設第2行起
+                        row: item.row || (index + 2),
                         amount: Number(item.amount),
                         currency: item.currency || 'JPY', 
                         members: typeof item.members === 'string' ? item.members.split(',') : item.members,
@@ -1799,7 +1909,6 @@
             }
         }
 
-        // 需求1: 編輯單筆紀錄
         function editExpense(idx) {
             const item = expenses[idx];
             if (!item) return;
@@ -1809,19 +1918,14 @@
             document.getElementById('btnAddExp').innerText = '💾 儲存修改並同步至雲端';
             document.getElementById('btnCancelEdit').style.display = 'block';
 
-            // 帶入日期
             if (item.date) {
                 let dateObj = new Date(item.date);
-				
 				if (!isNaN(dateObj.getTime())) {
 					let year = dateObj.getFullYear();
 					let month = String(dateObj.getMonth() + 1).padStart(2, '0');
 					let day = String(dateObj.getDate()).padStart(2, '0');
-					
-					// 組合出 input[type="date"] 所需的 YYYY-MM-DD 格式
 					document.getElementById('expDate').value = `${year}-${month}-${day}`;
 				} else {
-					// 防呆：若無法轉為 Date 物件，退回原切割邏輯
 					document.getElementById('expDate').value = item.date.toString().split('T')[0];
 				}
             }
@@ -1831,7 +1935,6 @@
             document.getElementById('expAmount').value = item.amount;
             onCurrencyChange();
 
-            // 確保付款人與分攤成員中有紀錄的人員
             const memList = Array.isArray(item.members) ? item.members : item.members.split(',');
             memList.forEach(m => {
                 if (!members.includes(m)) members.push(m);
@@ -1839,11 +1942,9 @@
             if (item.payer && !members.includes(item.payer)) members.push(item.payer);
             renderMembersUI();
 
-            // 設定付款人
             const payerRadio = document.querySelector(`input[name="payerRadio"][value="${item.payer}"]`);
             if (payerRadio) payerRadio.checked = true;
 
-            // 判斷分攤模式
             if (item.shares && Object.keys(item.shares).length > 0) {
                 setSplitMode('custom');
                 manualCustomMembers.clear();
@@ -1875,11 +1976,9 @@
                 });
             }
 
-            // 滾動至表單處
             document.getElementById('formCard').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 需求1: 刪除單筆紀錄
         async function deleteExpense(idx) {
             const item = expenses[idx];
             if (!item) return;
@@ -1974,7 +2073,7 @@
             }
 
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-            let balances = {}; // 內部統一以 TWD 進行結算與計算
+            let balances = {};
 
             expenses.forEach((item, idx) => {
                 const curr = item.currency || 'JPY';
@@ -1987,11 +2086,11 @@
                 if (curr === 'JPY') {
                     displayMain = `¥${item.amount.toLocaleString()}`;
                     displaySub = `≈ NT$${Math.round(item.amount * rate).toLocaleString()}`;
-                    amountInTwd = item.amount * rate; // 換算成 TWD 計算
+                    amountInTwd = item.amount * rate;
                 } else {
                     displayMain = `NT$${item.amount.toLocaleString()}`;
                     displaySub = ''; 
-                    amountInTwd = item.amount; // TWD 直接計算
+                    amountInTwd = item.amount;
                 }
                 
                 let shareDetailStr = '';
@@ -2009,25 +2108,17 @@
                 let formattedDate = '未指定日期';
 
 				if (item.date) {
-					// 1. 將輸入的日期字串轉為 JavaScript Date 物件（會自動轉為瀏覽器的本地時區）
 					let dateObj = new Date(item.date);
-					
-					// 防呆：確認是否為有效 Date
 					if (!isNaN(dateObj.getTime())) {
 						let year = dateObj.getFullYear();
-						// getMonth() 回傳 0~11，所以要 +1，並補零至 2 位數
 						let month = String(dateObj.getMonth() + 1).padStart(2, '0');
 						let day = String(dateObj.getDate()).padStart(2, '0');
-						
-						// 組合出經過時區校正後的 YYYY/MM/DD
 						formattedDate = `${year}/${month}/${day}`;
 					} else {
-						// 若無法解析為 Date，退回原始字串處理
 						formattedDate = item.date.toString().split('T')[0].replace(/-/g, '/');
 					}
 				}
 
-                // 需求1: 渲染編輯與刪除按鈕
                 const div = document.createElement('div');
                 div.className = 'expense-list-item';
                 div.innerHTML = `
@@ -2097,6 +2188,7 @@
 
         renderMembersUI();
         fetchExpensesFromCloud();
+        fetchMapStateFromCloud();
     </script>
 </body>
 </html>
