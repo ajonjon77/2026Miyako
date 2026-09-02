@@ -168,6 +168,23 @@
             line-height: 1.6;
             color: var(--text-primary);
         }
+		
+		.checkin-btn {
+			display: inline-block;
+			background-color: #0284c7; /* 按鈕背景顏色 */
+			color: #ffffff;            /* 文字顏色 */
+			padding: 6px 10px;        /* 內圍留白 (上下 左右) */
+			text-decoration: none;     /* 移除超連結預設的下劃線 */
+			border-radius: 4px;        /* 圓角邊框 */
+			font-size: 13px;
+			font-weight: bold;
+			transition: background-color 0.2s;
+		}
+
+		/* 滑鼠懸停時變深色 */
+		.checkin-btn:hover {
+			background-color: #0369a1;
+		}
 
         .info-row {
             display: flex;
@@ -705,6 +722,11 @@
                     星宇航空 JX890｜桃園 T1 ➔ 下地島機場<br><br>
                     <b>回程：</b>10/26 (一) 14:00 - 14:10<br>
                     星宇航空 JX887｜下地島機場 ➔ 桃園 T1
+                </div>
+                <div class="flight-summary">
+					<a href="https://www.starlux-airlines.com/zh-TW/check-in-fly/check-in-now/online-check-in" target="_blank" class="checkin-btn">✈️ 點我報到</a>	<font color="red">&nbsp&nbsp**起飛前48-1小時預辦登機**</font><br><br>
+					<b>去程：</b>10/19 (一) 10:40 可報到<br>
+					<b>回程：</b>10/24 (六) 14:00 可報到<br>				
                 </div>
             </div>
 
