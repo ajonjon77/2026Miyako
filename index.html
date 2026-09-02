@@ -73,7 +73,7 @@
             text-transform: uppercase;
         }
 
-        .day-nav {
+        .day-nav, .sub-nav {
             display: none;
             overflow-x: auto;
             padding: 14px 20px;
@@ -87,10 +87,10 @@
             border-bottom: 1px solid var(--border-light);
         }
 
-        .day-nav::-webkit-scrollbar { display: none; }
+        .day-nav::-webkit-scrollbar, .sub-nav::-webkit-scrollbar { display: none; }
 
-        .day-btn {
-            flex: 0 0 auto;
+        .day-btn, .sub-btn {
+            flex: 1;
             padding: 8px 16px;
             background: white;
             border: 1px solid var(--border-light);
@@ -103,6 +103,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            white-space: nowrap;
         }
 
         .day-btn span.date {
@@ -111,15 +112,15 @@
             margin-top: 2px;
         }
 
-        .day-btn.active {
+        .day-btn.active, .sub-btn.active {
             background: var(--accent-ocean);
             color: white;
             border-color: var(--accent-ocean);
         }
 
         .container { padding: 20px; }
-        .tab-content { display: none; }
-        .tab-content.active {
+        .tab-content, .sub-tab-content { display: none; }
+        .tab-content.active, .sub-tab-content.active {
             display: block;
             animation: fadeIn 0.4s ease-in-out;
         }
@@ -707,8 +708,16 @@
         <button class="day-btn" id="btn-day4" onclick="switchTab('day4')">Day 4<span class="date">10/24 (六)</span></button>
         <button class="day-btn" id="btn-day5" onclick="switchTab('day5')">Day 5<span class="date">10/25 (日)</span></button>
         <button class="day-btn" id="btn-day6" onclick="switchTab('day6')">Day 6<span class="date">10/26 (一)</span></button>
+    </div>	
+	
+    <!-- 美食購物次選單 -->
+    <div class="sub-nav" id="foodShopNav">
+        <button class="sub-btn active" id="btn-sub-food" onclick="switchFoodShopTab('food-sub')">美食</button>
+        <button class="sub-btn" id="btn-sub-cafe" onclick="switchFoodShopTab('cafe-sub')">咖啡廳.甜點店</button>
+        <button class="sub-btn" id="btn-sub-shopping" onclick="switchFoodShopTab('shopping-sub')">購物</button>
+        <button class="sub-btn" id="btn-sub-gift" onclick="switchFoodShopTab('gift-sub')">伴手禮</button>
     </div>
-
+	
     <div class="container">
 
         <!-- ===== Home (首頁導覽) ===== -->
@@ -1148,267 +1157,276 @@
             </div>
         </div>
 
-        <!-- ===== Food ===== -->
-        <div id="food" class="tab-content">
-            <div class="section-header-title">🍜 餐廳推薦</div>
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🥩 宮古牛頂級燒肉</span>
-					<a href="https://maps.google.com/?q=焼肉なかお" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【焼肉なかお】Nakao 宮古牛</div>
-                <img src="images/food_01.jpg" class="spot-img" alt="宮古牛Nakao">
-                <div class="spot-desc">專賣極品宮古牛燒肉，肉質油花分佈勻稱，燒烤後入口即化。</div>
+        <!-- ===== 美食購物 (合併頁面) ===== -->
+        <div id="food-shopping" class="tab-content">
+            <!-- 子區塊 1: 美食 -->
+            <div id="food-sub" class="sub-tab-content active">
+                <div class="section-header-title">🍜 餐廳推薦</div>
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🥩 宮古牛頂級燒肉</span>
+                        <a href="https://maps.google.com/?q=焼肉なかお" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【焼肉なかお】Nakao 宮古牛</div>
+                    <img src="images/food_01.jpg" class="spot-img" alt="宮古牛Nakao">
+                    <div class="spot-desc">專賣極品宮古牛燒肉，肉質油花分佈勻稱，燒烤後入口即化。</div>
+                </div>
+
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🍜 老字號宮古麵</span>
+                        <a href="https://maps.google.com/?q=古謝そば屋" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【古謝そば屋】蕎麥麵</div>
+                    <img src="images/food_02.jpg" class="spot-img" alt="古謝蕎麥麵屋">
+                    <div class="spot-desc">創立數十年的老字號名店，清甜濃郁的柴魚湯頭配上軟嫩三層肉與燉軟骨。</div>
+                </div>
+
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🦀 秘境海鮮</span>					
+                        <a href="https://maps.google.com/?q=海鮮悟空" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【海鮮悟空】椰子蟹</div>
+                    <img src="images/food_03.jpg" class="spot-img" alt="海鮮悟空">
+                    <div class="spot-desc">平良市區熱門名店，可品嚐宮古島特色野生椰子蟹料理與極鮮海鮮丼。</div>
+                </div>
+
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🍢 當地風味居酒屋</span>
+                        <a href="https://maps.google.com/?q=島おでんたから" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【島おでんたから】居酒屋</div>
+                    <img src="images/food_04.jpg" class="spot-img" alt="島おでんたから">
+                    <div class="spot-desc">以燉煮極致入味的島關東煮與香酥豬腳聞名的超高人氣排隊名店。</div>
+                </div>
+
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🦀 蟹肉體驗</span>
+                        <a href="https://maps.google.com/?q=蟹蔵+Miyako" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【蟹蔵】</div>
+                    <img src="images/food_05.jpg" class="spot-img" alt="蟹蔵">
+                    <div class="spot-desc">位於伊良部島，提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
+                </div>
+                
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🚌 美式校車餐車</span>
+                        <a href="https://maps.google.com/?q=HARRY’S+Shrimp+Truck" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【HARRY’S Shrimp Truck】奶油蒜蝦飯</div>
+                    <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
+                    <div class="spot-desc">主打各式蝦蝦飯，美式校車、藍綠色半露天座位，再加上海岸景色，很有宮古島獨有的悠閒感。</div>
+                </div>
             </div>
 
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🍜 老字號宮古麵</span>
-					<a href="https://maps.google.com/?q=古謝そば屋" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【古謝そば屋】蕎麥麵</div>
-                <img src="images/food_02.jpg" class="spot-img" alt="古謝蕎麥麵屋">
-                <div class="spot-desc">創立數十年的老字號名店，清甜濃郁的柴魚湯頭配上軟嫩三層肉與燉軟骨。</div>
+            <!-- 子區塊 2: 咖啡廳.甜點 -->
+            <div id="cafe-sub" class="sub-tab-content">
+                <div class="section-header-title">☕︎ 咖啡廳.甜點店</div>
+                <div class="spot-card food">
+                    <div class="spot-header">
+                        <span class="spot-time food-tag">🥭 芒果海景咖啡</span>
+                        <a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
+                    <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
+                    <img src="images/cafe_01.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
+                    <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
+                </div>
             </div>
 
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🦀 秘境海鮮</span>					
-					<a href="https://maps.google.com/?q=海鮮悟空" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【海鮮悟空】椰子蟹</div>
-                <img src="images/food_03.jpg" class="spot-img" alt="海鮮悟空">
-                <div class="spot-desc">平良市區熱門名店，可品嚐宮古島特色野生椰子蟹料理與極鮮海鮮丼。</div>
-            </div>
+            <!-- 子區塊 3: 購物 -->
+            <div id="shopping-sub" class="sub-tab-content">
+                <div class="section-header-title">🛍️ 必逛購物地點</div>
 
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🍢 當地風味居酒屋</span>
-					<a href="https://maps.google.com/?q=島おでんたから" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【島おでんたから】居酒屋</div>
-                <img src="images/food_04.jpg" class="spot-img" alt="島おでんたから">
-                <div class="spot-desc">以燉煮極致入味的島關東煮與香酥豬腳聞名的超高人氣排隊名店。</div>
-            </div>
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">鹽業主題</span>
+                        <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">雪塩博物館</div>
+                    <img src="images/shop/shop_01.jpg" class="spot-img" alt="雪塩博物館">
+                    <div class="spot-desc">認識極細雪鹽製程，現場販售多元雪鹽商品、美妝品及招牌雪鹽霜淇淋。</div>
+                </div>
 
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🦀 蟹肉體驗</span>
-					<a href="https://maps.google.com/?q=蟹蔵+Miyako" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【蟹蔵】</div>
-                <img src="images/food_05.jpg" class="spot-img" alt="蟹蔵">
-                <div class="spot-desc">位於伊良部島，提供青蟹紅樹林導覽體驗與新鮮現蒸紅樹林蟹珍饈。</div>
-            </div>
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">折扣百貨</span>
+                        <a href="https://maps.google.com/?q=Don+Quijote+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">唐吉訶德 宮古島店</div>
+                    <img src="images/shop/shop_02.jpg" class="spot-img" alt="唐吉訶德">
+                    <div class="spot-desc">營業至深夜的大型賣場，一次採買齊全沖繩限定藥妝、零食與各類生活雜貨。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">生鮮超市</span>
+                        <a href="https://maps.google.com/?q=MaxValu+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">永旺宮古南購物中心 AEON TOWN</div>
+                    <img src="images/shop/shop_03.jpg" class="spot-img" alt="MaxValu超市">
+                    <div class="spot-desc">集結24H超市、藥妝、服飾與餐廳的綜合商圈，停車極為便利。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">文青選物</span>
+                        <a href="https://maps.google.com/?q=Cross+Point+Market+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">Cross Point Market</div>
+                    <img src="images/shop/shop_04.jpg" class="spot-img" alt="Cross Point Market">
+                    <div class="spot-desc">嚴選沖繩與宮古島質感雜貨、文創伴手禮、特色服飾及精緻紀念品。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">歷史商街</span>
+                        <a href="https://maps.google.com/?q=Nishizato+Street" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">西里大通街</div>
+                    <img src="images/shop/shop_05.jpg" class="spot-img" alt="西里大通街">
+                    <div class="spot-desc">市區熱鬧的商店街，集結在地手工藝品店、泡盛酒專賣店與特色居酒屋。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">農特產集散</span>
+                        <a href="https://maps.google.com/?q=Shima+no+Eki+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">島之站宮古（島の駅みやこ）</div>
+                    <img src="images/shop/shop_06.jpg" class="spot-img" alt="島之站宮古">
+                    <div class="spot-desc">當地居民與遊客最愛的特產市場，產地直送新鮮芒果、火龍果與各種海島抹醬。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">生活雜貨</span>
+                        <a href="https://maps.google.com/?q=MUJI+Miyakojima+City" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">無印良品 宮古島City店</div>
+                    <img src="images/shop/shop_07.jpg" class="spot-img" alt="無印良品宮古島">
+                    <div class="spot-desc">宮古島首家無印良品門市，極簡舒適空間，適合補給服飾、保養品與旅行雜物。</div>
+                </div>
+
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">百元均一</span>
+                        <a href="https://maps.google.com/?q=DAISO+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">大創 DAISO 宮古南SC店</div>
+                    <img src="images/shop/shop_08.jpg" class="spot-img" alt="DAISO">
+                    <div class="spot-desc">品項齊全的百元商店，補充海邊玩水小物、收納袋與超值日本生活用品。</div>
+                </div>
+                
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">香蕉伴手禮</span>
+                        <a href="https://maps.google.com/?q=Monte+Doll+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">Monte Doll (モンテドール)</div>
+                    <img src="images/shop/shop_09.jpg" class="spot-img" alt="Monte Doll">
+                    <div class="spot-desc">宮古島飄香數十年的經典伴手禮，使用天然香蕉烘焙，口感紮實濃郁。。</div>
+                </div>
+                
+                <div class="spot-card shopping">
+                    <div class="spot-header">
+                        <span class="spot-time shop-tag">機場限定</span>
+                        <a href="https://maps.google.com/?q=coral+port+the+Shop+Shimojishima" target="_blank" class="map-link">📍 地圖導航</a>
+                    </div>
+                    <div class="spot-title">下地島機場 coral port the Shop</div>
+                    <img src="images/shop/shop_10.jpg" class="spot-img" alt="coral port the Shop">
+                    <div class="spot-desc">渡假風質感航廈商店，販售獨家聯名商品、時尚配件與搭機前的特色紀念品。</div>
+                </div>
+			</div>
 			
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🚌 美式校車餐車</span>
-					<a href="https://maps.google.com/?q=HARRY’S+Shrimp+Truck" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【HARRY’S Shrimp Truck】奶油蒜蝦飯</div>
-                <img src="images/food_06.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
-                <div class="spot-desc">主打各式蝦蝦飯，美式校車、藍綠色半露天座位，再加上海岸景色，很有宮古島獨有的悠閒感。</div>
-            </div>
-			
-            <div class="section-header-title">☕︎ 咖啡廳.甜點店</div>
-            <div class="spot-card food">
-                <div class="spot-header">
-					<span class="spot-time food-tag">🥭 芒果海景咖啡</span>
-					<a href="https://maps.google.com/?q=Blue+Farm+Mango+Cafe" target="_blank" class="map-link">📍 地圖導航</a></div>
-                <div class="spot-title">【Blue Turtle Farm Mango Café】芒果冰沙</div>
-                <img src="images/cafe_01.jpg" class="spot-img" alt="Blue Turtle Farm Mango Cafe">
-                <div class="spot-desc">自設農場直送新鮮芒果，搭配無敵海景享受濃郁芒果冰沙與精緻甜點。</div>
+			<!-- 子區塊 4: 購物 -->
+            <div id="gift-sub" class="sub-tab-content">
+                <div class="section-header-title">🎁 伴手禮推薦</div>
+                <div class="souvenir-grid">
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_01.jpg" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
+                        <div class="souvenir-name">1. 雪鹽白巧克力餅</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_02.jpg" class="souvenir-img" alt="雪鹽法蘭酥">
+                        <div class="souvenir-name">2. 雪鹽法蘭酥</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_03.jpg" class="souvenir-img" alt="雪鹽薯條">
+                        <div class="souvenir-name">3. 雪鹽薯條</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_04.jpg" class="souvenir-img" alt="雪鹽費南雪">
+                        <div class="souvenir-name">4. 雪鹽費南雪</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_05.jpg" class="souvenir-img" alt="雪鹽費南雪">
+                        <div class="souvenir-name">5. 雪鹽金楚糕</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_06.jpg" class="souvenir-img" alt="雪鹽年輪蛋糕">
+                        <div class="souvenir-name">6. 雪鹽年輪蛋糕</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_07.jpg" class="souvenir-img" alt="雪鹽調味料">
+                        <div class="souvenir-name">7. 雪鹽調味料</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_08.jpg" class="souvenir-img" alt="雪鹽汽水">
+                        <div class="souvenir-name">8. 宮古島雪鹽汽水</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_09.jpg" class="souvenir-img" alt="雪鹽肥皂">
+                        <div class="souvenir-name">9. 宮古島雪鹽肥皂</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_10.jpg" class="souvenir-img" alt="紅芋塔">
+                        <div class="souvenir-name">10. 紅芋塔 / 紅薯塔</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_11.jpg" class="souvenir-img" alt="Monte Doll香蕉蛋糕">
+                        <div class="souvenir-name">11. Monte Doll香蕉蛋糕</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_12.jpg" class="souvenir-img" alt="芒果夾心餅乾">
+                        <div class="souvenir-name">12. 芒果夾心餅乾</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_13.jpg" class="souvenir-img" alt="宮古島堅果">
+                        <div class="souvenir-name">13. 宮古島堅果酥</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_14.jpg" class="souvenir-img" alt="守護君周邊">
+                        <div class="souvenir-name">14. 守護君周邊商品</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_15.jpg" class="souvenir-img" alt="宮古島帆布袋">
+                        <div class="souvenir-name">15. 宮古島帆布袋</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_16.jpg" class="souvenir-img" alt="宮古島磁鐵">
+                        <div class="souvenir-name">16. 宮古島磁鐵</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_17.jpg" class="souvenir-img" alt="特色T-shirt">
+                        <div class="souvenir-name">17. 宮古島 T-shirt</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_18.jpg" class="souvenir-img" alt="Blue Seal周邊">
+                        <div class="souvenir-name">18. Blue Seal 冰淇淋</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_19.jpg" class="souvenir-img" alt="Orion周邊">
+                        <div class="souvenir-name">19. Orion 周邊商品</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_20.jpg" class="souvenir-img" alt="曬黑 Hello Kitty">
+                        <div class="souvenir-name">20. 曬黑 Hello Kitty</div>
+                    </div>
+                    <div class="souvenir-card">
+                        <img src="images/gift/gift_21.jpg" class="souvenir-img" alt="Hydro Flask水壺">
+                        <div class="souvenir-name">21. 下地島 Hydro Flask</div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- ===== Shopping ===== -->
-        <div id="shopping" class="tab-content">
-            <div class="section-header-title">🛍️ 必逛購物地點</div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">鹽業主題</span>
-                    <a href="https://maps.google.com/?q=Yukisio+Museum" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">雪塩博物館</div>
-                <img src="images/shop/shop_01.jpg" class="spot-img" alt="雪塩博物館">
-                <div class="spot-desc">認識極細雪鹽製程，現場販售多元雪鹽商品、美妝品及招牌雪鹽霜淇淋。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">折扣百貨</span>
-                    <a href="https://maps.google.com/?q=Don+Quijote+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">唐吉訶德 宮古島店</div>
-                <img src="images/shop/shop_02.jpg" class="spot-img" alt="唐吉訶德">
-                <div class="spot-desc">營業至深夜的大型賣場，一次採買齊全沖繩限定藥妝、零食與各類生活雜貨。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">生鮮超市</span>
-                    <a href="https://maps.google.com/?q=MaxValu+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">永旺宮古南購物中心 AEON TOWN</div>
-                <img src="images/shop/shop_03.jpg" class="spot-img" alt="MaxValu超市">
-                <div class="spot-desc">集結24H超市、藥妝、服飾與餐廳的綜合商圈，停車極為便利。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">文青選物</span>
-                    <a href="https://maps.google.com/?q=Cross+Point+Market+Miyakojima" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">Cross Point Market</div>
-                <img src="images/shop/shop_04.jpg" class="spot-img" alt="Cross Point Market">
-                <div class="spot-desc">嚴選沖繩與宮古島質感雜貨、文創伴手禮、特色服飾及精緻紀念品。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">歷史商街</span>
-                    <a href="https://maps.google.com/?q=Nishizato+Street" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">西里大通街</div>
-                <img src="images/shop/shop_05.jpg" class="spot-img" alt="西里大通街">
-                <div class="spot-desc">市區熱鬧的商店街，集結在地手工藝品店、泡盛酒專賣店與特色居酒屋。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">農特產集散</span>
-                    <a href="https://maps.google.com/?q=Shima+no+Eki+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">島之站宮古（島の駅みやこ）</div>
-                <img src="images/shop/shop_06.jpg" class="spot-img" alt="島之站宮古">
-                <div class="spot-desc">當地居民與遊客最愛的特產市場，產地直送新鮮芒果、火龍果與各種海島抹醬。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">生活雜貨</span>
-                    <a href="https://maps.google.com/?q=MUJI+Miyakojima+City" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">無印良品 宮古島City店</div>
-                <img src="images/shop/shop_07.jpg" class="spot-img" alt="無印良品宮古島">
-                <div class="spot-desc">宮古島首家無印良品門市，極簡舒適空間，適合補給服飾、保養品與旅行雜物。</div>
-            </div>
-
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">百元均一</span>
-                    <a href="https://maps.google.com/?q=DAISO+Miyako+Minami" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">大創 DAISO 宮古南SC店</div>
-                <img src="images/shop/shop_08.jpg" class="spot-img" alt="DAISO">
-                <div class="spot-desc">品項齊全的百元商店，補充海邊玩水小物、收納袋與超值日本生活用品。</div>
-            </div>
-			
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">香蕉伴手禮</span>
-                    <a href="https://maps.google.com/?q=Monte+Doll+Miyako" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">Monte Doll (モンテドール)</div>
-                <img src="images/shop/shop_09.jpg" class="spot-img" alt="Monte Doll">
-                <div class="spot-desc">宮古島飄香數十年的經典伴手禮，使用天然香蕉烘焙，口感紮實濃郁。。</div>
-            </div>
-			
-            <div class="spot-card shopping">
-                <div class="spot-header">
-                    <span class="spot-time shop-tag">機場限定</span>
-                    <a href="https://maps.google.com/?q=coral+port+the+Shop+Shimojishima" target="_blank" class="map-link">📍 地圖導航</a>
-                </div>
-                <div class="spot-title">下地島機場 coral port the Shop</div>
-                <img src="images/shop/shop_10.jpg" class="spot-img" alt="coral port the Shop">
-                <div class="spot-desc">渡假風質感航廈商店，販售獨家聯名商品、時尚配件與搭機前的特色紀念品。</div>
-            </div>
-
-            <div class="section-header-title">🎁 伴手禮推薦</div>
-            <div class="souvenir-grid">
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_01.jpg" class="souvenir-img" alt="雪鹽白巧克力夾心餅">
-                    <div class="souvenir-name">1. 雪鹽白巧克力餅</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_02.jpg" class="souvenir-img" alt="雪鹽法蘭酥">
-                    <div class="souvenir-name">2. 雪鹽法蘭酥</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_03.jpg" class="souvenir-img" alt="雪鹽薯條">
-                    <div class="souvenir-name">3. 雪鹽薯條</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_04.jpg" class="souvenir-img" alt="雪鹽費南雪">
-                    <div class="souvenir-name">4. 雪鹽費南雪</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_05.jpg" class="souvenir-img" alt="雪鹽費南雪">
-                    <div class="souvenir-name">5. 雪鹽金楚糕</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_06.jpg" class="souvenir-img" alt="雪鹽年輪蛋糕">
-                    <div class="souvenir-name">6. 雪鹽年輪蛋糕</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_07.jpg" class="souvenir-img" alt="雪鹽調味料">
-                    <div class="souvenir-name">7. 雪鹽調味料</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_08.jpg" class="souvenir-img" alt="雪鹽汽水">
-                    <div class="souvenir-name">8. 宮古島雪鹽汽水</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_09.jpg" class="souvenir-img" alt="雪鹽肥皂">
-                    <div class="souvenir-name">9. 宮古島雪鹽肥皂</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_10.jpg" class="souvenir-img" alt="紅芋塔">
-                    <div class="souvenir-name">10. 紅芋塔 / 紅薯塔</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_11.jpg" class="souvenir-img" alt="Monte Doll香蕉蛋糕">
-                    <div class="souvenir-name">11. Monte Doll香蕉蛋糕</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_12.jpg" class="souvenir-img" alt="芒果夾心餅乾">
-                    <div class="souvenir-name">12. 芒果夾心餅乾</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_13.jpg" class="souvenir-img" alt="宮古島堅果">
-                    <div class="souvenir-name">13. 宮古島堅果酥</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_14.jpg" class="souvenir-img" alt="守護君周邊">
-                    <div class="souvenir-name">14. 守護君周邊商品</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_15.jpg" class="souvenir-img" alt="宮古島帆布袋">
-                    <div class="souvenir-name">15. 宮古島帆布袋</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_16.jpg" class="souvenir-img" alt="宮古島磁鐵">
-                    <div class="souvenir-name">16. 宮古島磁鐵</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_17.jpg" class="souvenir-img" alt="特色T-shirt">
-                    <div class="souvenir-name">17. 宮古島 T-shirt</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_18.jpg" class="souvenir-img" alt="Blue Seal周邊">
-                    <div class="souvenir-name">18. Blue Seal 冰淇淋</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_19.jpg" class="souvenir-img" alt="Orion周邊">
-                    <div class="souvenir-name">19. Orion 周邊商品</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_20.jpg" class="souvenir-img" alt="曬黑 Hello Kitty">
-                    <div class="souvenir-name">20. 曬黑 Hello Kitty</div>
-                </div>
-                <div class="souvenir-card">
-                    <img src="images/gift/gift_21.jpg" class="souvenir-img" alt="Hydro Flask水壺">
-                    <div class="souvenir-name">21. 下地島 Hydro Flask</div>
-                </div>
-            </div>
-        </div>
-
+		
         <!-- ===== Shared Split Expense Tool (升級分帳) ===== -->
         <div id="calc" class="tab-content">
             <div class="calc-card">
@@ -1555,13 +1573,9 @@
 			<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.89 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
 			地圖
 		</button>
-        <button class="bottom-nav-btn" id="bnav-food" onclick="switchTab('food')">
+        <button class="bottom-nav-btn" id="bnav-food-shopping" onclick="switchTab('food-shopping')">
             <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.46 3.9 3.45 4.35V21h3v-7.65c1.99-.45 3.45-2.23 3.45-4.35V2h-2v7zm7-7h-1c-2.21 0-4 1.79-4 4v7h2v8h3V2z"/></svg>
-            美食
-        </button>
-        <button class="bottom-nav-btn" id="bnav-shopping" onclick="switchTab('shopping')">
-            <svg viewBox="0 0 24 24"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
-            購物
+            美食購物
         </button>
         <button class="bottom-nav-btn" id="bnav-calc" onclick="switchTab('calc')">
             <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -1588,22 +1602,51 @@
             document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
 
             const topNav = document.getElementById('topNav');
+            const foodShopNav = document.getElementById('foodShopNav');
             const dayBtns = document.querySelectorAll('.day-btn');
             dayBtns.forEach(btn => btn.classList.remove('active'));
 
             if (tabId.startsWith('day')) {
                 topNav.style.display = 'flex';
+                foodShopNav.style.display = 'none';
                 const dayBtn = document.getElementById('btn-' + tabId);
                 if (dayBtn) {
                     dayBtn.classList.add('active');
                     dayBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
                 document.getElementById('bnav-schedule').classList.add('active');
+			} else if (tabId === 'food-shopping') {
+                topNav.style.display = 'none';
+                foodShopNav.style.display = 'flex';
+                document.getElementById('bnav-food-shopping').classList.add('active');
             } else {
                 topNav.style.display = 'none';
+                foodShopNav.style.display = 'none';
                 if (document.getElementById('bnav-' + tabId)) {
                     document.getElementById('bnav-' + tabId).classList.add('active');
                 }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+		
+		function switchFoodShopTab(subTabId) {
+            const subContents = document.querySelectorAll('.sub-tab-content');
+            subContents.forEach(c => c.classList.remove('active'));
+
+            const target = document.getElementById(subTabId);
+            if (target) target.classList.add('active');
+
+            const subBtns = document.querySelectorAll('.sub-btn');
+            subBtns.forEach(b => b.classList.remove('active'));
+
+            if (subTabId === 'food-sub') {
+                document.getElementById('btn-sub-food').classList.add('active');
+            } else if (subTabId === 'cafe-sub') {
+                document.getElementById('btn-sub-cafe').classList.add('active');
+            } else if (subTabId === 'shopping-sub') {
+                document.getElementById('btn-sub-shopping').classList.add('active');
+            } else if (subTabId === 'gift-sub') {
+                document.getElementById('btn-sub-gift').classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
